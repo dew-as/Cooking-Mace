@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-// React.createElement => Object => HTMLElement(render)
+// React.createElement => ReactElementJS-Object => HTMLElement(render)
 
 const heading = React.createElement(
   "h1",
@@ -12,6 +12,8 @@ const heading = React.createElement(
 console.log(heading);
 
 // JSX (Transpiled before it reaches the JS) - Parcel - Babel
+
+// JSX => React.createElement => ReactElementJS-Object => HTMLElement(render)
 
 const jsxHeading = <h1>Nmaste React By JSX 🚀</h1>; //Conver this into browser understand language that is Ecmascript pure Javascript
 
