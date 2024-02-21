@@ -1,27 +1,40 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const heading = React.createElement(
-  "h1",
-  { id: "heading" },
-  "Namaste React 🚀"
+const heading1 = <h1>i am element to element</h1>;
+
+const HeadComponent = () => (
+  <div>
+    <h1 className="heading" tabIndex="1">
+      i am component to element
+    </h1>
+  </div>
+);
+
+const heading2 = (
+  <div>
+    <h2>i am element to component</h2>
+    <HeadComponent />
+    {heading1}
+  </div>
 );
 
 const ReactComponent = () => (
-  <>
+  <div>
     <h1 className="heading" tabIndex="1">
-      Namaste React Nested Component 🚀
+      i am component to component
     </h1>
-    <p>Paragraph</p>
-  </>
+    {heading2}
+  </div>
 );
 
-const Header2Component = () => (
+const HeaderComponent = () => (
   <div id="container">
     <ReactComponent />
-    {/* this is how we can pass a component and use it inside */}
     <h1 className="heading" tabIndex="1">
-      Namaste React Component 🚀
+      Basically these all are javascript.... react element becomes js object ....
+      jsx becomes react element and then js object....component is used to write JSX and
+      we can write js by adding {"{ }"} in component we can write any javascript code 🚀
     </h1>
   </div>
 );
@@ -30,4 +43,4 @@ const Header2Component = () => (
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<Header2Component />);
+root.render(<HeaderComponent />);
