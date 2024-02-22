@@ -2,9 +2,9 @@
   "name": "namaste-react",
   "version": "1.0.0",
   "description": "course-for react js developer",
-    "scripts": {
-    "start" :"parcel index.html",
-    "build" :"parcel build index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "repository": {
@@ -29,7 +29,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "browserlist" : [
+  "browserlist": [
     "last 10 versions"
   ]
 }
