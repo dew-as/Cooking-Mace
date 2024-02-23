@@ -18,3 +18,25 @@
 - HTTPs 
 - Tree Shaking - remove unused code
 - Different dev and production bundles
+
+# food ordering app - plan
+
+/*
+ * Header
+ * -Logo
+ * -NavItems
+ * Body
+ * -SearchBar
+ * -RestaurantContainer
+ *   -RestaurantCard
+ *      - img
+ *      - res name
+ *      - type
+ *      - rating
+ *      - delivery time
+ * Footer
+ * -Copyright
+ * -Links
+ * -Contact
+ * -Address
+ */

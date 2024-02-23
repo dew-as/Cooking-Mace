@@ -1,103 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-/*
- * Header
- * -Logo
- * -NavItems
- * Body
- * -SearchBar
- * -RestaurantContainer
- *   -RestaurantCard
- *      - img
- *      - res name
- *      - type
- *      - rating
- *      - delivery time
- * Footer
- * -Copyright
- * -Links
- * -Contact
- * -Address
- */
-
-const Header = () => {
-  return (
-    <div className="header">
-      <div className="logo">
-        <i class="bx bx-cookie bx-spin"></i>
-        <p>
-          Swa<span>ggy</span>
-        </p>
-        <i class="bx bxs-cookie bx-spin bx-rotate-180"></i>
-      </div>
-      <div className="navItems">
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-const RestaurantCard = (props) => {
-  const { data } = props;
-  return (
-    <div className="card-container">
-      <div className="img-container">
-        <img
-          src={
-            "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" +
-            data.info.cloudinaryImageId
-          }
-          alt="res-logo"
-        />
-        <span className="offer">
-          {data.info.aggregatedDiscountInfoV3.header}{" "}
-          {data.info.aggregatedDiscountInfoV3.subHeader}
-        </span>
-      </div>
-      <div className="card-details">
-        <div className="res-head">
-          <p className="res-name">{data.info.name}</p>
-          <i
-            style={
-              data.info.isOpen === true ? { color: "green" } : { color: "red" }
-            }
-          >
-            {data.info.isOpen === true ? "Open" : "Closed"}
-          </i>
-        </div>
-        <p className="res-type">{data.info.cuisines.join(", ")}</p>
-        <div className="rate-time">
-          <p className="res-rate">
-            <i className="bx bxs-star bx-tada bx-rotate-180"></i>
-            {data.info.avgRating}
-          </p>
-          <p className="del-time">
-            <i class="bx bxs-bowl-hot bx-tada bx-rotate-180"></i>
-            {data.info.sla.deliveryTime} mins
-          </p>
-        </div>
-        <div className="distance">
-          <p>
-            🏍️ Far ({data.info.sla.lastMileTravel} kms) | Additional delivery
-            fee will apply
-          </p>
-        </div>
-        <p className="location">
-          <i class="bx bx-map bx-flashing bx-flip-horizontal"></i>
-          {data.info.areaName}
-        </p>
-      </div>
-    </div>
-  );
-};
-
-const data = [
+export const data = [
   {
     info: {
       id: "780417",
@@ -200,10 +101,10 @@ const data = [
       totalRatingsString: "1K+",
       sla: {
         deliveryTime: 21,
-        lastMileTravel: 2.8,
+        lastMileTravel: 3.8,
         serviceability: "SERVICEABLE",
         slaString: "21 mins",
-        lastMileTravelString: "2.8 km",
+        lastMileTravelString: "3.8 km",
         iconType: "ICON_TYPE_EMPTY",
       },
       availability: {
@@ -1329,44 +1230,5 @@ const data = [
       type: "WEBLINK",
     },
     widgetId: "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo",
-  }
+  },
 ];
-
-const Body = () => {
-  return (
-    <div className="body">
-      <div className="search">Search</div>
-      <div className="res-container">
-        <RestaurantCard data={data[0]} />
-        <RestaurantCard data={data[1]} />
-        <RestaurantCard data={data[2]} />
-        <RestaurantCard data={data[3]} />
-        <RestaurantCard data={data[4]} />
-        <RestaurantCard data={data[5]} />
-        <RestaurantCard data={data[6]} />
-        <RestaurantCard data={data[7]} />
-        <RestaurantCard data={data[8]} />
-        <RestaurantCard data={data[9]} />
-        <RestaurantCard data={data[10]} />
-        <RestaurantCard data={data[11]} />
-        <RestaurantCard data={data[12]} />
-        <RestaurantCard data={data[13]} />
-        <RestaurantCard data={data[14]} />
-        <RestaurantCard data={data[15]} />
-      </div>
-    </div>
-  );
-};
-
-const AppLayout = () => {
-  return (
-    <div className="app">
-      <Header />
-      <Body />
-    </div>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<AppLayout />);

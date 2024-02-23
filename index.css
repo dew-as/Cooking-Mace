@@ -2,12 +2,30 @@
   font-family: sans-serif;
 }
 
+body {
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.body {
+  width: 80%;
+  margin: auto;
+}
+
+.header-container {
+  box-shadow: 10px 5px 5px rgba(25, 24, 24, 0.092);
+  background-color: whitesmoke;
+}
+
 .header {
+  width: 75%;
+  height: 60px;
+  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0px 60px;
-  border: 1px solid gray;
+  font-family: monospace;
 }
 
 .logo {
@@ -21,16 +39,10 @@
   color: rgb(235, 148, 9);
 }
 
-.logo p {
-  margin: 0 10;
-  font-size: large;
-  font-style: italic;
-  font-weight: bold;
-  color: rgb(235, 148, 9);
-}
-
-.logo p span {
-  color: rgb(0, 0, 0);
+.logo img {
+  width: 120px;
+  height: 40px;
+  margin: 0 13;
 }
 
 .navItems ul {
@@ -46,11 +58,6 @@
   padding: 10px;
 }
 
-.body {
-  width: 80%;
-  margin: auto;
-}
-
 .res-container {
   display: flex;
   gap: 10px;
@@ -63,31 +70,34 @@
   width: 250px;
   height: 100%;
   padding: 5px;
-  background-color: #7870702b;
-  border-radius: 5px;
+  border-radius: 15px;
   margin-bottom: 20px;
+  transition: transform 0.4s;
 }
 
 .card-container:hover {
-  border: 1px solid rgba(165, 165, 165, 0.951);
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 15px;
+  background-color: #78707014;
+  height: 100%;
+  transform: scale(0.9);
 }
 
 .card-container .img-container img {
   width: 100%;
   height: 60%;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .card-container .img-container span {
-  color: rgb(255, 255, 255);
-  font-size: 20px;
+  color: rgba(255, 255, 255, 0.964);
+  font-size: 17px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   position: relative;
-  bottom: 40px;
-  margin-left: 10px;
+  bottom: 30px;
+  left: 10px;
   font-weight: bolder;
+  letter-spacing: 2px;
 }
 
 .card-details {
@@ -115,7 +125,8 @@
 .card-details .res-type {
   color: gray;
   font-size: 15px;
-  line-height: 15px;
+  line-height: 18px;
+  margin: 5px 0;
 }
 
 .card-details .res-rate {
@@ -145,9 +156,12 @@
   justify-content: space-between;
 }
 .card-details .distance p {
-  font-size: 10px;
+  font-size: 11px;
   color: gray;
   margin-top: 10px;
+}
+.card-details .distance p span {
+  font-size: large;
 }
 .card-details .location {
   font-size: 10px;
