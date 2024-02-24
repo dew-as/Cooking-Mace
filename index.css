@@ -54,8 +54,17 @@ body {
   list-style: none;
 }
 
-.search {
-  padding: 10px;
+.filter {
+  padding: 20px;
+  margin-left: 20px;
+}
+
+.filter-btn {
+  padding: 7px;
+  border-radius: 5px;
+  border: none;
+  color: gray;
+  cursor: pointer;
 }
 
 .res-container {
