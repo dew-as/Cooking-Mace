@@ -1,5 +1,6 @@
 :root {
   font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 body {
@@ -32,10 +33,7 @@ body {
   display: flex;
 }
 
-.logo i:nth-child(3) {
-  color: rgb(0, 0, 0);
-}
-.logo i:nth-child(1) {
+.logo i {
   color: rgb(235, 148, 9);
 }
 
@@ -45,18 +43,58 @@ body {
   margin: 0 13;
 }
 
+.search {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: rgba(104, 104, 110, 0.234);
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  list-style: none;
+}
+
 .navItems ul {
   display: flex;
-  gap: 30px;
+  gap: 40px;
+  padding: 0;
 }
 
 .navItems ul li {
   list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 1px;
+  color: gray;
+}
+
+.navItems ul li:hover {
+  color: rgb(255, 136, 0);
+  cursor: pointer;
+}
+
+.navItems ul li span {
+  position: relative;
+  top: -7px;
+  color: rgb(255, 136, 0);
+  right: 9px;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: sans-serif;
+}
+
+.menu-bar {
+  display: none;
 }
 
 .filter {
   padding: 20px;
   margin-left: 20px;
+  display: flex;
+  gap: 10px;
 }
 
 .filter-btn {
@@ -182,4 +220,61 @@ body {
   color: rgb(63, 118, 177);
   margin-right: 5px;
   font-size: 15px;
+}
+
+@media (max-width: 1040px) {
+  .body {
+    width: 90%;
+    margin: auto;
+  }
+  .menu-bar {
+    display: block;
+  }
+  .navItems.active {
+    display: block;
+  }
+  .navItems.disabled {
+    display: none;
+  }
+  .navItems ul {
+    display: block;
+  }
+  .navItems {
+    background-color: rgba(0, 0, 0, 0.87);
+    width: 200px;
+    height: 190px;
+    position: relative;
+    top: 140px;
+    color: white;
+    border-radius: 5px;
+    z-index: 1;
+    left: 180px;
+  }
+  .navItems ul li {
+    gap: 5px;
+    font-size: small;
+    margin-bottom: 20px;
+  }
+  .navItems ul li span {
+    display: none;
+  }
+}
+
+@media (max-width: 780px) {
+  .navItems {
+    left: 120px;
+  }
+  .navItems ul li {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 650px) {
+  .navItems {
+    left: 70px;
+    margin-right: 10px;
+  }
+  .navItems ul li {
+    margin-bottom: 20px;
+  }
 }

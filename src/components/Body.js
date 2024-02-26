@@ -1,15 +1,25 @@
 import RestaurantCard from "./RestaurantCard";
-import { data } from "../utils/mockData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Body = () => {
-  // const [listOffRestaurants, setListOffRestaurants] = useState(data);
+  const [filterRestaurant, setFilterRestaurant] = useState([]);
 
-  const arr = useState(data);
-  // const [listOffRestaurants, setListOffRestaurants] = arr
+  const [listOffRestaurants, setListOffRestaurants] = useState([]);
 
-  const listOffRestaurants = arr[0];
-  const setListOffRestaurants = arr[1];
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=8.490872999999999&lng=76.9527483&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+    const restaurants =
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    setListOffRestaurants(restaurants);
+    setFilterRestaurant(restaurants);
+  };
 
   return (
     <div className="body">
@@ -17,7 +27,7 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() => {
-            const filteredList = listOffRestaurants.filter(
+            const filteredList = filterRestaurant.filter(
               (restaurant) => restaurant.info.avgRating > 4
             );
             setListOffRestaurants(filteredList);
@@ -25,9 +35,42 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
+        <button
+          className="filter-btn"
+          onClick={() => {
+            const filteredList = filterRestaurant.filter(
+              (restaurant) => restaurant.info.sla.deliveryTime < 20
+            );
+            setListOffRestaurants(filteredList);
+          }}
+        >
+          Fast Delivery
+        </button>
+        <button
+          className="filter-btn"
+          onClick={() => {
+            const filteredList = filterRestaurant.filter(
+              (restaurant) => restaurant.info.sla.lastMileTravel < 3
+            );
+            setListOffRestaurants(filteredList);
+          }}
+        >
+          Restaurants Nearby
+        </button>
+        <button
+          className="filter-btn"
+          onClick={() => {
+            const filteredList = filterRestaurant.filter(
+              (restaurant) => restaurant.info.sla.lastMileTravel < 2
+            );
+            setListOffRestaurants(filteredList);
+          }}
+        >
+          Free Delivery
+        </button>
       </div>
       <div className="res-container">
-        {listOffRestaurants.map((restaurant) => (
+        {listOffRestaurants?.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>

@@ -1,6 +1,8 @@
+import { useState } from "react";
 import LOGO_IMG from "../utils/logo.png";
 
 const Header = () => {
+  const [isVisible, setIsVisible] = useState(false);
   return (
     <div className="header-container">
       {" "}
@@ -8,15 +10,33 @@ const Header = () => {
         <div className="logo">
           <i className="bx bx-cookie bx-spin"></i>
           <img src={LOGO_IMG} />
-          <i className="bx bxs-cookie bx-spin bx-rotate-180"></i>
         </div>
-        <div className="navItems">
+        <div className={`navItems ${isVisible ? "active" : "disabled"}`}>
           <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
-            <li>Cart</li>
+            <li>
+              <i className="bx bx-search"></i>Search
+            </li>
+            <li>
+              <i className="bx bx-home"></i>Home
+            </li>
+            <li>
+              <i className="bx bx-info-circle"></i>About
+            </li>
+            <li>
+              <i className="bx bxs-offer"></i>Offers <span>NEW</span>
+            </li>
+            <li>
+              <i className="bx bx-store-alt"></i>Cart <span>0</span>
+            </li>
           </ul>
+        </div>
+        <div
+          className="menu-bar"
+          onClick={() => {
+            setIsVisible((prevState) => !prevState);
+          }}
+        >
+          <i className="bx bx-menu"></i>
         </div>
       </div>
     </div>
