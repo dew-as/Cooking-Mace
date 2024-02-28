@@ -13,13 +13,14 @@ const RestaurantCard = (props) => {
     areaName,
   } = resData.info;
   const { deliveryTime, lastMileTravel } = sla;
-  const { header, subHeader } = aggregatedDiscountInfoV3;
+
   return (
     <div className="card-container">
       <div className="img-container">
         <img src={CDN_URL + cloudinaryImageId} alt="res-logo" />
         <span className="offer">
-          {header} {subHeader}
+          {aggregatedDiscountInfoV3?.header}{" "}
+          {aggregatedDiscountInfoV3?.subHeader}
         </span>
       </div>
       <div className="card-details">

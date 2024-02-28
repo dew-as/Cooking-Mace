@@ -29,12 +29,20 @@ body {
   font-family: monospace;
 }
 
+.header .log-btn {
+  border: none;
+  background-color: rgb(255, 136, 0);
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: rgb(245, 245, 245);
+}
+
 .logo {
   display: flex;
 }
 
 .logo i {
-  color: rgb(235, 148, 9);
+  color: rgb(235, 122, 9);
 }
 
 .logo img {
@@ -94,6 +102,7 @@ body {
   padding: 20px;
   margin-left: 20px;
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
@@ -103,6 +112,34 @@ body {
   border: none;
   color: gray;
   cursor: pointer;
+}
+
+.filter-btn:focus {
+  background-color: rgba(255, 136, 0, 0.996);
+  color: white;
+}
+
+.filter .search-res {
+  display: flex;
+}
+
+.filter .search-res input {
+  border: 1px solid rgba(255, 136, 0, 0.453);
+  border-right: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: gray;
+  text-align: center;
+  outline: rgba(255, 136, 0, 0.996);
+}
+
+.filter .search-res button {
+  border: none;
+  background-color: rgb(255, 136, 0);
+  padding: 5px 15px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: rgb(245, 245, 245);
 }
 
 .res-container {
@@ -130,6 +167,11 @@ body {
   transform: scale(0.9);
 }
 
+.card-container .img-container {
+  position: relative;
+  max-height: 165px;
+}
+
 .card-container .img-container img {
   width: 100%;
   height: 60%;
@@ -150,13 +192,11 @@ body {
 .card-details {
   padding: 5px;
   line-height: 5px;
-  margin-top: -15px;
 }
 
 .card-details .res-name {
   font-size: 17px;
   margin: 0;
-  margin: 3px 0;
   letter-spacing: 0.5px;
   color: rgb(112, 112, 112);
   font-weight: 600;
@@ -220,6 +260,202 @@ body {
   color: rgb(63, 118, 177);
   margin-right: 5px;
   font-size: 15px;
+}
+
+.shimmer-container {
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: auto;
+  margin-top: 80px;
+}
+
+.shimmer-card div {
+  width: 250px;
+  height: 150px;
+  border-radius: 15px;
+  background-color: rgba(128, 128, 128, 0.453);
+}
+
+.shimmer-card .shimmer-foot {
+  width: 250px;
+  height: 30px;
+  border-radius: 10px;
+  margin: 20px 0;
+  background-color: rgba(128, 128, 128, 0.453);
+}
+
+.search-container {
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.search-container .input-container {
+  width: 100%;
+  height: 30px;
+  border: 1px solid rgba(128, 128, 128, 0.763);
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
+}
+
+.search-container .input-container input {
+  border: none;
+  background-color: transparent;
+  margin-left: 10px;
+  width: 100%;
+  justify-content: space-between;
+  font-family: monospace;
+  outline: none;
+}
+
+.search-container .input-container i {
+  margin-right: 10px;
+  color: rgba(128, 128, 128, 0.763);
+}
+
+.search-cards {
+  width: 100%;
+  margin-top: 30px;
+  gap: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.search-card {
+  display: flex;
+  width: 200px;
+  gap: 20px;
+  color: rgb(91, 91, 91);
+  /* margin-top: 10px; */
+}
+
+.search-card .img-container img {
+  width: 72px;
+  height: 90px;
+  border-radius: 50%;
+}
+
+.search-card .text-container h6 {
+  margin-top: -15px;
+}
+
+.footer {
+  background-color: black;
+  color: aliceblue;
+}
+
+.footer-container {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+}
+
+.footer-container .copy-right {
+  display: block;
+  width: 25%;
+  margin-right: 20px;
+}
+
+.footer-container .copy-right .logo {
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+  gap: 10px;
+  color: rgb(255, 140, 0);
+}
+
+.footer-container .copy-right .logo i {
+  font-size: 40px;
+}
+
+.footer-container .copy-right .text {
+  font-size: 10px;
+}
+
+.footer-container .company {
+  width: 25%;
+}
+
+.footer-container .contact-us {
+  width: 25%;
+}
+
+.footer-container .places {
+  width: 25%;
+}
+
+.footer-container h6 {
+  color: gray;
+}
+
+.search-container {
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.search-shimmer .search-container .input-container {
+  width: 100%;
+  height: 30px;
+  border: 1px solid rgba(128, 128, 128, 0.763);
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
+}
+
+.search-shimmer .search-container .input-container input {
+  border: none;
+  background-color: transparent;
+  margin-left: 10px;
+  width: 100%;
+  justify-content: space-between;
+  font-family: monospace;
+  outline: none;
+}
+
+.search-shimmer .search-container .input-container i {
+  margin-right: 10px;
+  color: rgba(128, 128, 128, 0.763);
+}
+
+.search-shimmer .search-cards {
+  width: 100%;
+  margin-top: 30px;
+  gap: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.search-shimmer .search-card {
+  width: 100px;
+  height: 70px;
+  border-radius: 10px;
+  display: flex;
+  width: 200px;
+  gap: 20px;
+}
+.search-shimmer .search-card .img-container {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(128, 128, 128, 0.548);
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.search-shimmer .search-card .text-container {
+  width: 100px;
+  height: 20px;
+  border-radius: 5px;
+  background-color: rgba(128, 128, 128, 0.542);
+  margin-top: 10px;
 }
 
 @media (max-width: 1040px) {

@@ -1,10 +1,13 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [filterRestaurant, setFilterRestaurant] = useState([]);
 
   const [listOffRestaurants, setListOffRestaurants] = useState([]);
+
+  const [inputData, setInputData] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -16,19 +19,63 @@ const Body = () => {
     );
     const json = await data.json();
     const restaurants =
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
     setListOffRestaurants(restaurants);
     setFilterRestaurant(restaurants);
+    console.log(restaurants);
   };
 
-  return (
+  return listOffRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
+      <div className="cover-pic">
+        <img src="" alt="" />
+      </div>
       <div className="filter">
+        <div className="search-res">
+          <input
+            type="text"
+            value={inputData}
+            onChange={(e) => setInputData(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                const filteredList = filterRestaurant.filter((restaurant) =>
+                  restaurant.info.name
+                    .toLowerCase()
+                    .includes(inputData.toLowerCase())
+                );
+                setListOffRestaurants(filteredList);
+              }
+            }}
+          />
+          <button
+            onClick={() => {
+              const filteredList = filterRestaurant.filter((restaurant) =>
+                restaurant.info.name
+                  .toLowerCase()
+                  .includes(inputData.toLowerCase())
+              );
+              setListOffRestaurants(filteredList);
+            }}
+          >
+            Search
+          </button>
+        </div>
+        <button
+          className="filter-btn"
+          onClick={() => {
+            setListOffRestaurants(filterRestaurant);
+          }}
+        >
+          All Restaurants
+        </button>
         <button
           className="filter-btn"
           onClick={() => {
             const filteredList = filterRestaurant.filter(
-              (restaurant) => restaurant.info.avgRating > 4
+              (restaurant) => restaurant.info.avgRating >= 4.5
             );
             setListOffRestaurants(filteredList);
           }}
@@ -39,7 +86,7 @@ const Body = () => {
           className="filter-btn"
           onClick={() => {
             const filteredList = filterRestaurant.filter(
-              (restaurant) => restaurant.info.sla.deliveryTime < 20
+              (restaurant) => restaurant.info.sla.deliveryTime < 25
             );
             setListOffRestaurants(filteredList);
           }}
@@ -69,6 +116,7 @@ const Body = () => {
           Free Delivery
         </button>
       </div>
+      {}
       <div className="res-container">
         {listOffRestaurants?.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />

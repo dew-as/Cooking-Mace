@@ -3,6 +3,7 @@ import LOGO_IMG from "../utils/logo.png";
 
 const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [btnName, setBtnName] = useState("Login");
   return (
     <div className="header-container">
       {" "}
@@ -30,6 +31,14 @@ const Header = () => {
             </li>
           </ul>
         </div>
+        <button
+          className="log-btn"
+          onClick={() =>
+            btnName === setBtnName(btnName === "Logout" ? "Login" : "Logout")
+          }
+        >
+          {btnName}
+        </button>
         <div
           className="menu-bar"
           onClick={() => {
