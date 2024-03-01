@@ -1,5 +1,6 @@
 import { useState } from "react";
 import LOGO_IMG from "../utils/logo.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,19 +16,30 @@ const Header = () => {
         <div className={`navItems ${isVisible ? "active" : "disabled"}`}>
           <ul>
             <li>
-              <i className="bx bx-search"></i>Search
+              <Link to={"/"} className="no-underline">
+                <i className="bx bx-home"></i>Home
+              </Link>
             </li>
             <li>
-              <i className="bx bx-home"></i>Home
+              <Link to={"/search"} className="no-underline">
+                <i className="bx bx-search"></i>Search
+              </Link>
+            </li>
+
+            <li>
+              <Link to={"/about"} className="no-underline">
+                <i className="bx bx-info-circle"></i>About
+              </Link>
             </li>
             <li>
-              <i className="bx bx-info-circle"></i>About
+              <Link to={"/offers"} className="no-underline">
+                <i className="bx bx-store-alt"></i>Cart <span>0</span>
+              </Link>
             </li>
             <li>
-              <i className="bx bxs-offer"></i>Offers <span>NEW</span>
-            </li>
-            <li>
-              <i className="bx bx-store-alt"></i>Cart <span>0</span>
+              <Link to={"/cart"} className="no-underline">
+                <i className="bx bx-store-alt"></i>Cart <span>0</span>
+              </Link>
             </li>
           </ul>
         </div>
