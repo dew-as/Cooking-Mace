@@ -33,7 +33,7 @@ const Header = () => {
             </li>
             <li>
               <Link to={"/offers"} className="no-underline">
-                <i className="bx bx-store-alt"></i>Cart <span>0</span>
+                <i className="bx bx-store-alt"></i>Offers <span>NEW</span>
               </Link>
             </li>
             <li>
