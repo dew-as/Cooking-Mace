@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="footer-container">
         <div className="copy-right">
           <div className="logo">
-            <i class="bx bx-cheese bx-tada"></i>
+            <i className="bx bx-cheese bx-tada"></i>
             <h4>Cooking Mace</h4>
           </div>
           <div className="text">

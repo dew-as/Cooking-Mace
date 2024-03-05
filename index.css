@@ -352,6 +352,7 @@ body {
 .footer {
   background-color: black;
   color: aliceblue;
+  margin-top: 20px;
 }
 
 .footer-container {
@@ -463,6 +464,147 @@ body {
   margin-top: 10px;
 }
 
+.menu-container {
+  width: 45%;
+  margin: auto;
+}
+.menu-container .res-details .res-head {
+  height: 40px;
+  margin-bottom: 10px;
+}
+.menu-container .res-details .res-head p {
+  font-size: 10px;
+  padding: 10px 0;
+  color: gray;
+  letter-spacing: 0.5px;
+}
+.menu-container .res-details .res-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px dashed gray;
+}
+.menu-container .res-details .res-info .res-name {
+  font-size: 17px;
+}
+.menu-container .res-details .res-info .common-gray {
+  color: rgb(128, 128, 128);
+  font-size: 13px;
+}
+.menu-container .res-details .res-info .common-gray i {
+  color: rgb(43, 114, 175);
+  font-size: 15px;
+}
+.menu-container .res-details .res-info .common-bold {
+  font-size: 13px;
+  display: flex;
+  gap: 20px;
+  font-weight: bolder;
+}
+.menu-container .res-details .res-info .common-bold i {
+  border: 1px solid black;
+  border-radius: 50%;
+  margin-right: 5px;
+  padding: 2px;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(142, 172, 198);
+  border-color: rgb(142, 172, 198);
+}
+.menu-container .res-details .res-info .rating {
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(74, 74, 74, 0.236);
+  height: 60px;
+  width: 60px;
+  margin-bottom: 100px;
+}
+.menu-container .res-details .res-info .rating .star {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.408);
+  padding-bottom: 7px;
+  color: green;
+  font-weight: bolder;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+}
+.menu-container .res-details .res-info .rating .count {
+  font-size: 10px;
+  color: rgb(115, 115, 12);
+}
+.menu-container .menu-list {
+  margin-top: 30px;
+}
+.menu-container .menu-list .veg-filter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.menu-container .menu-list .veg-filter span {
+  font-size: 15px;
+  font-weight: bolder;
+  color: gray;
+}
+.menu-container .menu-list .veg-filter i {
+  font-size: 25px;
+  font-weight: lighter;
+  color: gray;
+  cursor: pointer;
+}
+.menu-container .menu-list .veg-filter i.active {
+  font-size: 25px;
+  font-weight: lighter;
+  color: green;
+}
+.menu-item {
+  border-top: 1px solid gray;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.menu-item .item-details {
+  display: block;
+  margin-top: 20px;
+}
+.menu-item .item-details i {
+  color: green;
+}
+.menu-item .item-details h6 {
+  font-size: 14px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin: 5px 0;
+}
+.menu-item .item-details span {
+  font-size: small;
+}
+.menu-item .item-details p {
+  color: gray;
+  font-size: 11px;
+}
+.menu-item .item-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
+.menu-item .item-img img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
+.menu-item .item-img button {
+  border-radius: 3px;
+  background-color: white;
+  color: green;
+  border: 1px solid rgba(128, 128, 128, 0.477);
+  outline: none;
+  position: relative;
+  left: 15px;
+  top: -25;
+  padding: 5px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
 @media (max-width: 1040px) {
   .body {
     width: 90%;
@@ -508,6 +650,12 @@ body {
   .navItems ul li {
     margin-bottom: 20px;
   }
+  .menu-container {
+    width: 75%;
+  }
+  .footer-container {
+    width: 80%;
+  }
 }
 
 @media (max-width: 650px) {
@@ -517,5 +665,20 @@ body {
   }
   .navItems ul li {
     margin-bottom: 20px;
+  }
+  .menu-container {
+    width: 90%;
+  }
+  .footer-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 650px) {
+  .footer-container {
+    width: 100%;
+  }
+  .menu-container {
+    width: 100%;
   }
 }
