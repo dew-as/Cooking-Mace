@@ -7,8 +7,10 @@ const RestaurantMenu = () => {
   const [isVeg, setIsVeg] = useState(false);
   const [resData, setResData] = useState([]);
   const [resInfo, setResInfo] = useState([]);
+  const [resOffer, setResOffer] = useState([]);
   const [show, setShow] = useState([]);
-  // const [filterData, setFilterData] = useState([]); veg filter
+  const [filterData, setFilterData] = useState([]);
+  let veg = [];
 
   useEffect(() => {
     fetchData();
@@ -22,13 +24,16 @@ const RestaurantMenu = () => {
         params.id
     );
     const json = await data.json();
-    console.log(json);
     setResInfo(json?.data?.cards[0]?.card?.card?.info);
     const dataMenu =
       json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
     const filteredMenu = dataMenu.filter((item) => item?.card?.card?.itemCards);
     setResData(filteredMenu); //all category
-    console.log(filteredMenu);
+    console.log(json);
+    const offers =
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
+    console.log(offers);
+    setResOffer(offers);
   };
 
   if (resData.length === 0) {
@@ -93,90 +98,168 @@ const RestaurantMenu = () => {
             <div className="count">{resInfo.totalRatingsString}</div>
           </div>
         </div>
+        <div className="res-offers">
+          {resOffer.map((offer) => (
+            <div className="res-offer">
+              <div>
+                <i class="bx bxs-offer"></i>
+                <h5>{offer?.info?.header}</h5>
+              </div>
+              <span>
+                {offer?.info?.couponCode} | {offer?.info?.description}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
       <div className="menu-list">
         <div className="veg-filter">
           <span>Veg Only</span>
           <i
-            onClick={() => setIsVeg((prev) => !prev)}
+            onClick={() => {
+              resData.map((cat) =>
+                veg.push(
+                  cat.card?.card?.itemCards.filter((item) =>
+                    item?.card?.info?.itemAttribute?.vegClassifier === "VEG"
+                      ? item.card
+                      : ""
+                  )
+                )
+              );
+              setFilterData([].concat(...veg));
+              setIsVeg((prev) => !prev);
+            }}
             className={`bx bx-food-tag ${isVeg ? "active" : ""}`}
           ></i>
+          <span> {isVeg ? filterData.length : null}</span>
         </div>
-        {resData.map((category) => (
-          <div key={category?.card?.card?.title}>
-            <div
-              onClick={() => {
-                setShow((prev) => ({
-                  ...prev,
-                  [category?.card?.card?.title]:
-                    !prev[category?.card?.card?.title],
-                }));
-              }}
-              className="categoryMenu"
-            >
-              <span>
-                {category?.card?.card?.title} (
-                {category?.card?.card?.itemCards.length})
-              </span>
-              <i
-                className={` ${
-                  show[category?.card?.card?.title]
-                    ? "bx bx-chevron-down bx-rotate-180"
-                    : "bx bx-chevron-down"
-                }`}
-              ></i>
-            </div>
-            {show[category?.card?.card?.title]
-              ? category?.card?.card?.itemCards.map((item) => (
-                  <div key={item?.card?.info?.id} className="menu-item">
-                    <div className="item-details">
+        {isVeg
+          ? filterData.map((item) => (
+              <div>
+                <div key={item?.card?.info?.id} className="menu-item">
+                  <div className="item-details">
+                    <i
+                      style={
+                        item?.card?.info?.itemAttribute?.vegClassifier === "VEG"
+                          ? { color: "green" }
+                          : { color: "red" }
+                      }
+                      className="bx bx-food-tag"
+                    ></i>
+                    <div className="ribbon ">
                       <i
                         style={
-                          item?.card?.info?.itemAttribute?.vegClassifier ===
-                          "VEG"
-                            ? { color: "green" }
-                            : { color: "red" }
+                          item.card.info.ribbon.text
+                            ? { color: "orange" }
+                            : { color: "white" }
                         }
-                        className="bx bx-food-tag"
+                        className="bx bxs-star"
                       ></i>
-                      <div className="ribbon ">
-                        <i
-                          style={
-                            item.card.info.ribbon.text
-                              ? { color: "orange" }
-                              : { color: "white" }
-                          }
-                          className="bx bxs-star"
-                        ></i>
-                        {item.card.info.ribbon.text}
-                      </div>
+                      {item.card.info.ribbon.text}
+                    </div>
 
-                      <h6>{item?.card?.info?.name}</h6>
-                      <span>
-                        ₹{" "}
-                        {item?.card?.info?.price / 100 ||
-                          item?.card?.info?.defaultPrice / 100}
-                      </span>
-                      <p>
-                        {item?.card?.info?.description?.length > 50
-                          ? item?.card?.info?.description
-                              .split(" ")
-                              .slice(0, 10)
-                              .join(" ") + " ..."
-                          : item?.card?.info?.description}
-                      </p>
-                    </div>
-                    <div className="item-img">
-                      {item.card.info.imageId && (
-                        <img src={CDN_URL + item?.card?.info?.imageId} alt="" />
-                      )}
-                      <button>ADD</button>
-                    </div>
+                    <h6>{item?.card?.info?.name}</h6>
+                    <span>
+                      ₹{" "}
+                      {item?.card?.info?.price / 100 ||
+                        item?.card?.info?.defaultPrice / 100}
+                    </span>
+                    <p>
+                      {item?.card?.info?.description?.length > 50
+                        ? item?.card?.info?.description
+                            .split(" ")
+                            .slice(0, 10)
+                            .join(" ") + " ..."
+                        : item?.card?.info?.description}
+                    </p>
                   </div>
-                ))
-              : null}
-          </div>
-        ))}
+                  <div className="item-img">
+                    {item.card.info.imageId && (
+                      <img src={CDN_URL + item?.card?.info?.imageId} alt="" />
+                    )}
+                    <button>ADD</button>
+                  </div>
+                </div>
+              </div>
+            ))
+          : resData.map((category) => (
+              <div key={category?.card?.card?.title}>
+                <div
+                  onClick={() => {
+                    setShow((prev) => ({
+                      ...prev,
+                      [category?.card?.card?.title]:
+                        !prev[category?.card?.card?.title],
+                    }));
+                  }}
+                  className="categoryMenu"
+                >
+                  <span>
+                    {category?.card?.card?.title} (
+                    {category?.card?.card?.itemCards.length})
+                  </span>
+                  <i
+                    className={` ${
+                      show[category?.card?.card?.title]
+                        ? "bx bx-chevron-down bx-rotate-180"
+                        : "bx bx-chevron-down"
+                    }`}
+                  ></i>
+                </div>
+                {show[category?.card?.card?.title]
+                  ? category?.card?.card?.itemCards.map((item) => (
+                      <div key={item?.card?.info?.id} className="menu-item">
+                        <div className="item-details">
+                          <i
+                            style={
+                              item?.card?.info?.itemAttribute?.vegClassifier ===
+                              "VEG"
+                                ? { color: "green" }
+                                : { color: "red" }
+                            }
+                            className="bx bx-food-tag"
+                          ></i>
+                          <div className="ribbon ">
+                            <i
+                              style={
+                                item.card.info.ribbon.text
+                                  ? { color: "orange" }
+                                  : { color: "white" }
+                              }
+                              className="bx bxs-star"
+                            ></i>
+                            {item.card.info.ribbon.text}
+                          </div>
+
+                          <h6>{item?.card?.info?.name}</h6>
+                          <span>
+                            ₹{" "}
+                            {item?.card?.info?.price / 100 ||
+                              item?.card?.info?.defaultPrice / 100}
+                          </span>
+                          <p>
+                            {item?.card?.info?.description?.length > 50
+                              ? item?.card?.info?.description
+                                  .split(" ")
+                                  .slice(0, 10)
+                                  .join(" ") + " ..."
+                              : item?.card?.info?.description}
+                          </p>
+                        </div>
+                        <div className="item-img">
+                          {item.card.info.imageId && (
+                            <img
+                              src={CDN_URL + item?.card?.info?.imageId}
+                              alt=""
+                            />
+                          )}
+                          <button>ADD</button>
+                        </div>
+                      </div>
+                    ))
+                  : null}
+              </div>
+            ))}
       </div>
     </div>
   );
