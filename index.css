@@ -586,6 +586,8 @@ body {
   width: 100px;
   height: 100px;
   border-radius: 10px;
+  display: grid;
+  place-items: center;
 }
 .menu-item .item-img img {
   width: 100px;
@@ -598,12 +600,27 @@ body {
   color: green;
   border: 1px solid rgba(128, 128, 128, 0.477);
   outline: none;
-  position: relative;
-  left: 15px;
-  top: -25;
   padding: 5px 20px;
   font-weight: bold;
   cursor: pointer;
+}
+.ribbon {
+  color: orange;
+  font-weight: bolder;
+  font-size: 12px;
+  font-family: sans-serif;
+}
+.categoryMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  color: rgb(112, 112, 112);
+  font-weight: bolder;
+  cursor: pointer;
+}
+.categoryMenu i {
+  font-size: 25px;
 }
 @media (max-width: 1040px) {
   .body {
@@ -671,14 +688,6 @@ body {
   }
   .footer-container {
     width: 90%;
-  }
-}
-
-@media (max-width: 650px) {
-  .footer-container {
-    width: 100%;
-  }
-  .menu-container {
-    width: 100%;
+    display: block;
   }
 }

@@ -24,6 +24,7 @@ const Body = () => {
         ?.restaurants;
     setListOffRestaurants(restaurants);
     setFilterRestaurant(restaurants);
+    console.log(restaurants);
   };
 
   return listOffRestaurants.length === 0 ? (
