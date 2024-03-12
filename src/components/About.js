@@ -1,7 +1,10 @@
+import UserClass from "./UserClass";
+
 const About = () => {
   return (
-    <div>
-      <h1>About Us</h1>
+    <div className="about">
+      <h1>User Details</h1>
+      <UserClass/>
     </div>
   );
 };

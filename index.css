@@ -623,13 +623,12 @@ body {
   place-items: center;
 }
 .menu-item .item-img img {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 10px;
 }
 .menu-item .item-img button {
-  border-radius: 3px;
-  background-color: white;
+  border-radius: 3px;  background-color: white;
   color: green;
   border: 1px solid rgba(128, 128, 128, 0.477);
   outline: none;
@@ -655,6 +654,16 @@ body {
 .categoryMenu i {
   font-size: 25px;
 }
+.user-class{
+  margin: 10px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: rgba(128, 128, 128, 0.29);
+  color: rgb(77, 76, 76);
+  font-family: sans-serif;
+}
+
 @media (max-width: 1040px) {
   .body {
     width: 90%;
