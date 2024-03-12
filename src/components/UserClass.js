@@ -1,17 +1,21 @@
-import React from "react"
+import React from "react";
 
 class UserClass extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log(props);
+  }
 
-    render () {
-        return (
-            <div className="user-class">
-                <h1>Aswindev</h1>
-                <h2>Kerala</h2>
-                <h3>dewasdevelops2gmail.com</h3>
-            </div>
-        )
-    }
-
+  render() {
+    const { name, location, contact } = this.props;
+    return (
+      <div className="user-class">
+        <h1>{name}</h1>
+        <h2>{location}</h2>
+        <h3>{contact}</h3>
+      </div>
+    );
+  }
 }
 
 export default UserClass;
