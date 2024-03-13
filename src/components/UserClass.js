@@ -14,9 +14,26 @@ class UserClass extends React.Component {
     const { count } = this.state;
     return (
       <div className="user-class">
-        <span>Count : {this.state.count}</span>
-        <hr/>
         <span>Count : {count}</span>
+        <hr />
+        <button
+          onClick={() => {
+            this.setState({
+              count: this.state.count + 1,
+            });
+          }}
+        >
+          Increment
+        </button>
+        <button
+          onClick={() => {
+            this.setState({
+              count: this.state.count - 1,
+            });
+          }}
+        >
+          Decrement
+        </button>
         <h1>{name}</h1>
         <h2>{location}</h2>
         <h3>{contact}</h3>
