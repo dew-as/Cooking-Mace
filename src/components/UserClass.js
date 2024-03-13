@@ -3,13 +3,18 @@ import React from "react";
 class UserClass extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       count: 0,
     };
+    console.log("Child constructor");
+  }
+
+  componentDidMount() {
+    console.log("Child componentDidMount");
   }
 
   render() {
+    console.log("Child render");
     const { name, location, contact } = this.props;
     const { count } = this.state;
     return (
