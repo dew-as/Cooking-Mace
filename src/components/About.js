@@ -10,14 +10,24 @@ class About extends Component {
   componentDidMount() {
     console.log("Parent componentDidMount");
   }
-  
+
   render() {
     console.log("Parent render");
     return (
       <div className="about">
         <h1>User Details</h1>
         <UserClass
-          name={"Aswindev"}
+          name={"First Child"}
+          location={"Kerala"}
+          contact={"dewasdevelops@gmail.com"}
+        />
+        <UserClass
+          name={"Second Child"}
+          location={"Kerala"}
+          contact={"dewasdevelops@gmail.com"}
+        />
+        <UserClass
+          name={"Third Child"}
           location={"Kerala"}
           contact={"dewasdevelops@gmail.com"}
         />
