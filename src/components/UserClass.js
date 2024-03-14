@@ -24,6 +24,11 @@ class UserClass extends React.Component {
     this.setState({
       userInfo: json,
     });
+
+    //this will do log every 1 sec
+    this.timer = setInterval(() => {
+      console.log("Rendered setInterval");
+    }, 1000);
   }
 
   // if we want to do anything on specific state changes how will be modify our componentDidUpdate ?
@@ -41,14 +46,19 @@ class UserClass extends React.Component {
   // if(prevState !== this.state.userData) // Do something
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState !== this.state.userInfo) {
-      // Do something
-    }
     console.log("Component did update");
   }
 
   componentWillUnmount() {
     console.log("This will log when the component will unmount");
+    //if we change the component and the setInterval won't stop that will render again so overcome this...
+    // use of componentWillUnmount is to clear things when component changes,
+    // React s a SPA so it doest do cleanup by self,so we want to do that after unmount the component
+
+    clearInterval(this.timer);
+
+    // this is why componentWillUnmount works,and we can do same thig on useEffect by adding a return function inside useEffect ,
+    //  that will act like componentWillUnmount,when ever the component changes that will be called and will clear unwanted
   }
 
   render() {
