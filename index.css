@@ -628,7 +628,8 @@ body {
   border-radius: 10px;
 }
 .menu-item .item-img button {
-  border-radius: 3px;  background-color: white;
+  border-radius: 3px;
+  background-color: white;
   color: green;
   border: 1px solid rgba(128, 128, 128, 0.477);
   outline: none;
@@ -654,14 +655,23 @@ body {
 .categoryMenu i {
   font-size: 25px;
 }
-.user-class{
+.user-class {
   margin: 10px;
-  border: 1px solid gray;
+  border: 1px solid rgba(128, 128, 128, 0.234);
   border-radius: 10px;
   padding: 20px;
-  background-color: rgba(128, 128, 128, 0.29);
+  background-color: rgba(128, 128, 128, 0.119);
   color: rgb(77, 76, 76);
   font-family: sans-serif;
+}
+.user-class img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.user-class div {
+  display: flex;
+  gap: 20px;
 }
 
 @media (max-width: 1040px) {
