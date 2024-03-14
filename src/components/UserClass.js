@@ -30,6 +30,10 @@ class UserClass extends React.Component {
     console.log("Component did update");
   }
 
+  componentWillUnmount(){
+    console.log("This will log when the component will unmount");
+  }
+
   render() {
     console.log("render");
     const { name, location, avatar_url, blog, email, url } =
