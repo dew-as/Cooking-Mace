@@ -663,6 +663,9 @@ body {
   background-color: rgba(128, 128, 128, 0.119);
   color: rgb(77, 76, 76);
   font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .user-class img {
   width: 80px;
@@ -670,7 +673,7 @@ body {
   border-radius: 50%;
 }
 .user-class div {
-  display: flex;
+  /* display: flex; */
   gap: 20px;
 }
 

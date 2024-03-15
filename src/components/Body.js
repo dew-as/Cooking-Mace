@@ -24,10 +24,10 @@ const Body = () => {
         ?.restaurants;
     setListOffRestaurants(restaurants);
     setFilterRestaurant(restaurants);
-    console.log(restaurants);
   };
+  console.log(listOffRestaurants);
 
-  return listOffRestaurants.length === 0 ? (
+  return listOffRestaurants.length === 0 && !inputData ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -39,16 +39,14 @@ const Body = () => {
           <input
             type="text"
             value={inputData}
-            onChange={(e) => setInputData(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                const filteredList = filterRestaurant.filter((restaurant) =>
-                  restaurant.info.name
-                    .toLowerCase()
-                    .includes(inputData.toLowerCase())
-                );
-                setListOffRestaurants(filteredList);
-              }
+            onChange={(e) => {
+              setInputData(e.target.value);
+              const filteredList = filterRestaurant.filter((restaurant) =>
+                restaurant.info.name
+                  .toLowerCase()
+                  .includes(e.target.value.toLowerCase())
+              );
+              setListOffRestaurants(filteredList);
             }}
           />
           <button
@@ -119,15 +117,19 @@ const Body = () => {
       </div>
       {}
       <div className="res-container">
-        {listOffRestaurants?.map((restaurant) => (
-          <Link
-            style={{ textDecoration: "none", color: "inherit" }}
-            to={"/restaurants/" + restaurant.info.id}
-            key={restaurant.info.id}
-          >
-            <RestaurantCard resData={restaurant} />
-          </Link>
-        ))}
+        {listOffRestaurants.length === 0 ? (
+          <h1>Can't find Data ! 🧐</h1>
+        ) : (
+          listOffRestaurants?.map((restaurant) => (
+            <Link
+              style={{ textDecoration: "none", color: "inherit" }}
+              to={"/restaurants/" + restaurant.info.id}
+              key={restaurant.info.id}
+            >
+              <RestaurantCard resData={restaurant} />
+            </Link>
+          ))
+        )}
       </div>
     </div>
   );

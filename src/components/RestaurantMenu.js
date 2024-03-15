@@ -1,114 +1,103 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
-import { CDN_URL } from "../utils/constants";
+import useResmenu from "../utils/useResmenu";
+import MenuCard from "./MenuCard";
+import MenuCategory from "./MenuCategory";
+import ResOffer from "./ResOffer";
 
 const RestaurantMenu = () => {
-  const [isVeg, setIsVeg] = useState(false);
   const [resData, setResData] = useState([]);
   const [resInfo, setResInfo] = useState([]);
   const [resOffer, setResOffer] = useState([]);
-  const [show, setShow] = useState([]);
+  const [isVeg, setIsVeg] = useState(false);
   const [filterData, setFilterData] = useState([]);
   let veg = [];
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const params = useParams();
 
-  const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=8.490872999999999&lng=76.9527483&restaurantId=" +
-        params.id
-    );
-    const json = await data.json();
-    setResInfo(json?.data?.cards[0]?.card?.card?.info);
-    const dataMenu =
-      json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-    const filteredMenu = dataMenu.filter((item) => item?.card?.card?.itemCards);
-    setResData(filteredMenu); //all category
-    console.log(json);
-    const offers =
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
-    console.log(offers);
-    setResOffer(offers);
-  };
+  const resMenuData = useResmenu(params);
 
-  if (resData.length === 0) {
+  useEffect(() => {
+    if (resMenuData) {
+      const resDetails = resMenuData?.cards[0]?.card?.card?.info;
+      setResInfo(resDetails);
+      const dataMenu =
+        resMenuData?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+      const filteredMenu = dataMenu.filter(
+        (item) => item?.card?.card?.itemCards
+      );
+      setResData(filteredMenu);
+      const offers =
+        resMenuData?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
+      console.log(offers);
+      console.log(resDetails);
+      console.log(filteredMenu);
+      setResOffer(offers);
+    }
+  }, [resMenuData]);
+
+  if (resMenuData === null) {
     return <Shimmer />;
   }
 
-  {
-    const {
-      areaName,
-      avgRating,
-      city,
-      costForTwoMessage,
-      cuisines,
-      name,
-      totalRatingsString,
-    } = resInfo;
-
-    const { slaString, lastMileTravelString, lastMileTravel } = resInfo?.sla;
-  }
+  const {
+    areaName,
+    avgRating,
+    city,
+    costForTwoMessage,
+    cuisines,
+    name,
+    totalRatingsString,
+    sla,
+  } = resInfo;
 
   return (
     <div className="menu-container">
       <div className="res-details">
         <div className="res-head">
           <p>
-            Home/{resInfo.city}/{resInfo.name}
+            Home/{city}/{name}
           </p>
         </div>
         <div className="res-info">
           <div>
-            <h1 className="res-name">{resInfo.name}</h1>
-            <p className="common-gray">{resInfo.cuisines.join(",")}</p>
+            <h1 className="res-name">{name}</h1>
+            <p className="common-gray">{cuisines?.join(" ,")}</p>
             <p className="common-gray">
-              {resInfo.areaName}, {resInfo.sla.lastMileTravelString}
+              {areaName}, {sla?.lastMileTravelString}
             </p>
             <br />
             <p className="common-gray">
               <i className="bx bx-trip"></i>{" "}
-              <span>{resInfo.sla.lastMileTravelString}</span> | <span>🏍️</span>{" "}
-              {resInfo.sla.lastMileTravel >= 3
+              <span>{sla?.lastMileTravelString}</span> | <span>🏍️</span>{" "}
+              {sla?.lastMileTravel >= 3
                 ? "Far " +
-                  resInfo?.sla.lastMileTravel +
+                  sla?.lastMileTravel +
                   " kms | Delivery Charge will apply"
-                : resInfo?.sla.lastMileTravel +
-                  " kms only | Free Delivery Available"}
+                : sla?.lastMileTravel + " kms only | Free Delivery Available"}
             </p>
             <p className="common-bold">
               <span>
-                <i className="bx bxs-timer"></i> {resInfo?.sla?.slaString}
+                <i className="bx bxs-timer"></i> {sla?.slaString}
               </span>
               <span>
                 <i className="bx bx-rupee"></i>
-                {resInfo.costForTwoMessage}
+                {costForTwoMessage}
               </span>
             </p>
           </div>
           <div className="rating">
             <div className="star">
               <i className="bx bxs-star"></i>
-              {resInfo.avgRating}
+              {avgRating}
             </div>
-            <div className="count">{resInfo.totalRatingsString}</div>
+            <div className="count">{totalRatingsString}</div>
           </div>
         </div>
         <div className="res-offers">
           {resOffer.map((offer) => (
-            <div className="res-offer">
-              <div>
-                <i class="bx bxs-offer"></i>
-                <h5>{offer?.info?.header}</h5>
-              </div>
-              <span>
-                {offer?.info?.couponCode} | {offer?.info?.description}
-              </span>
-            </div>
+            <ResOffer offer={offer} />
           ))}
         </div>
       </div>
@@ -134,132 +123,8 @@ const RestaurantMenu = () => {
           <span> {isVeg ? filterData.length : null}</span>
         </div>
         {isVeg
-          ? filterData.map((item) => (
-              <div>
-                <div key={item?.card?.info?.id} className="menu-item">
-                  <div className="item-details">
-                    <i
-                      style={
-                        item?.card?.info?.itemAttribute?.vegClassifier === "VEG"
-                          ? { color: "green" }
-                          : { color: "red" }
-                      }
-                      className="bx bx-food-tag"
-                    ></i>
-                    <div className="ribbon ">
-                      <i
-                        style={
-                          item.card.info.ribbon.text
-                            ? { color: "orange" }
-                            : { color: "white" }
-                        }
-                        className="bx bxs-star"
-                      ></i>
-                      {item.card.info.ribbon.text}
-                    </div>
-
-                    <h6>{item?.card?.info?.name}</h6>
-                    <span>
-                      ₹{" "}
-                      {item?.card?.info?.price / 100 ||
-                        item?.card?.info?.defaultPrice / 100}
-                    </span>
-                    <p>
-                      {item?.card?.info?.description?.length > 50
-                        ? item?.card?.info?.description
-                            .split(" ")
-                            .slice(0, 10)
-                            .join(" ") + " ..."
-                        : item?.card?.info?.description}
-                    </p>
-                  </div>
-                  <div className="item-img">
-                    {item.card.info.imageId && (
-                      <img src={CDN_URL + item?.card?.info?.imageId} alt="" />
-                    )}
-                    <button>ADD</button>
-                  </div>
-                </div>
-              </div>
-            ))
-          : resData.map((category) => (
-              <div key={category?.card?.card?.title}>
-                <div
-                  onClick={() => {
-                    setShow((prev) => ({
-                      ...prev,
-                      [category?.card?.card?.title]:
-                        !prev[category?.card?.card?.title],
-                    }));
-                  }}
-                  className="categoryMenu"
-                >
-                  <span>
-                    {category?.card?.card?.title} (
-                    {category?.card?.card?.itemCards.length})
-                  </span>
-                  <i
-                    className={` ${
-                      show[category?.card?.card?.title]
-                        ? "bx bx-chevron-down bx-rotate-180"
-                        : "bx bx-chevron-down"
-                    }`}
-                  ></i>
-                </div>
-                {show[category?.card?.card?.title]
-                  ? category?.card?.card?.itemCards.map((item) => (
-                      <div key={item?.card?.info?.id} className="menu-item">
-                        <div className="item-details">
-                          <i
-                            style={
-                              item?.card?.info?.itemAttribute?.vegClassifier ===
-                              "VEG"
-                                ? { color: "green" }
-                                : { color: "red" }
-                            }
-                            className="bx bx-food-tag"
-                          ></i>
-                          <div className="ribbon ">
-                            <i
-                              style={
-                                item.card.info.ribbon.text
-                                  ? { color: "orange" }
-                                  : { color: "white" }
-                              }
-                              className="bx bxs-star"
-                            ></i>
-                            {item.card.info.ribbon.text}
-                          </div>
-
-                          <h6>{item?.card?.info?.name}</h6>
-                          <span>
-                            ₹{" "}
-                            {item?.card?.info?.price / 100 ||
-                              item?.card?.info?.defaultPrice / 100}
-                          </span>
-                          <p>
-                            {item?.card?.info?.description?.length > 50
-                              ? item?.card?.info?.description
-                                  .split(" ")
-                                  .slice(0, 10)
-                                  .join(" ") + " ..."
-                              : item?.card?.info?.description}
-                          </p>
-                        </div>
-                        <div className="item-img">
-                          {item.card.info.imageId && (
-                            <img
-                              src={CDN_URL + item?.card?.info?.imageId}
-                              alt=""
-                            />
-                          )}
-                          <button>ADD</button>
-                        </div>
-                      </div>
-                    ))
-                  : null}
-              </div>
-            ))}
+          ? filterData.map((item) => <MenuCard item={item} />)
+          : resData.map((category) => <MenuCategory category={category} />)}
       </div>
     </div>
   );
