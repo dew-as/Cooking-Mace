@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useNetworkStatus from "../utils/useNetworkStatus";
 
 const Body = () => {
   const [filterRestaurant, setFilterRestaurant] = useState([]);
@@ -26,6 +27,11 @@ const Body = () => {
     setFilterRestaurant(restaurants);
   };
   console.log(listOffRestaurants);
+
+  const networkStatus = useNetworkStatus();
+
+  if (networkStatus === false)
+    return <h1>You'r Offline Now Please Check The Internet Connection ! 👀</h1>;
 
   return listOffRestaurants.length === 0 && !inputData ? (
     <Shimmer />
@@ -114,6 +120,9 @@ const Body = () => {
         >
           Free Delivery
         </button>
+        <span style={{ color: networkStatus ? "green" : "red" }}>
+          {networkStatus ? "🍏- Online" : "🍎- Offline"}
+        </span>
       </div>
       {}
       <div className="res-container">

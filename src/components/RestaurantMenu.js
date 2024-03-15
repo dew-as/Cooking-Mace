@@ -30,9 +30,6 @@ const RestaurantMenu = () => {
       setResData(filteredMenu);
       const offers =
         resMenuData?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
-      console.log(offers);
-      console.log(resDetails);
-      console.log(filteredMenu);
       setResOffer(offers);
     }
   }, [resMenuData]);
@@ -97,7 +94,7 @@ const RestaurantMenu = () => {
         </div>
         <div className="res-offers">
           {resOffer.map((offer) => (
-            <ResOffer offer={offer} />
+            <ResOffer key={offer?.info?.offerIds[0]} offer={offer} />
           ))}
         </div>
       </div>
@@ -123,8 +120,15 @@ const RestaurantMenu = () => {
           <span> {isVeg ? filterData.length : null}</span>
         </div>
         {isVeg
-          ? filterData.map((item) => <MenuCard item={item} />)
-          : resData.map((category) => <MenuCategory category={category} />)}
+          ? filterData.map((item) => (
+              <MenuCard key={item?.card?.info?.id} item={item} />
+            ))
+          : resData.map((category) => (
+              <MenuCategory
+                key={category?.card?.card?.title}
+                category={category}
+              />
+            ))}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ const MenuCategory = (props) => {
   const [show, setShow] = useState([]);
   const { category } = props;
   return (
-    <div key={category?.card?.card?.title}>
+    <div>
       <div
         onClick={() => {
           setShow((prev) => ({

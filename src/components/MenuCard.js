@@ -4,7 +4,7 @@ const MenuCard = (props) => {
   const { item } = props;
   return (
     <div>
-      <div key={item?.card?.info?.id} className="menu-item">
+      <div className="menu-item">
         <div className="item-details">
           <i
             style={
