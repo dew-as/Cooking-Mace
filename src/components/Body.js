@@ -28,6 +28,38 @@ const Body = () => {
   };
   console.log(listOffRestaurants);
 
+  const handleSelectChange = (event) => {
+    const selectedFilter = event.target.value;
+    let filteredList;
+
+    switch (selectedFilter) {
+      case "topRated":
+        filteredList = filterRestaurant.filter(
+          (restaurant) => restaurant.info.avgRating >= 4.5
+        );
+        break;
+      case "fastDelivery":
+        filteredList = filterRestaurant.filter(
+          (restaurant) => restaurant.info.sla.deliveryTime < 25
+        );
+        break;
+      case "nearby":
+        filteredList = filterRestaurant.filter(
+          (restaurant) => restaurant.info.sla.lastMileTravel < 3
+        );
+        break;
+      case "freeDelivery":
+        filteredList = filterRestaurant.filter(
+          (restaurant) => restaurant.info.sla.lastMileTravel < 2
+        );
+        break;
+      default:
+        filteredList = filterRestaurant;
+    }
+
+    setListOffRestaurants(filteredList);
+  };
+
   const networkStatus = useNetworkStatus();
 
   if (networkStatus === false)
@@ -37,10 +69,10 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="cover-pic">
-        <img src="" alt="" />
-      </div>
       <div className="filter">
+        {/* <span style={{ color: networkStatus ? "green" : "red" }}>
+          {networkStatus ? "🍏- Online" : "🍎- Offline"}
+        </span> */}
         <div className="search-res">
           <input
             type="text"
@@ -68,61 +100,13 @@ const Body = () => {
             Search
           </button>
         </div>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            setListOffRestaurants(filterRestaurant);
-          }}
-        >
-          All Restaurants
-        </button>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filteredList = filterRestaurant.filter(
-              (restaurant) => restaurant.info.avgRating >= 4.5
-            );
-            setListOffRestaurants(filteredList);
-          }}
-        >
-          Top Rated Restaurants
-        </button>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filteredList = filterRestaurant.filter(
-              (restaurant) => restaurant.info.sla.deliveryTime < 25
-            );
-            setListOffRestaurants(filteredList);
-          }}
-        >
-          Fast Delivery
-        </button>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filteredList = filterRestaurant.filter(
-              (restaurant) => restaurant.info.sla.lastMileTravel < 3
-            );
-            setListOffRestaurants(filteredList);
-          }}
-        >
-          Restaurants Nearby
-        </button>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filteredList = filterRestaurant.filter(
-              (restaurant) => restaurant.info.sla.lastMileTravel < 2
-            );
-            setListOffRestaurants(filteredList);
-          }}
-        >
-          Free Delivery
-        </button>
-        <span style={{ color: networkStatus ? "green" : "red" }}>
-          {networkStatus ? "🍏- Online" : "🍎- Offline"}
-        </span>
+        <select className="select-filter" onChange={handleSelectChange}>
+          <option value="">All Restaurants</option>
+          <option value="topRated">Top Rated Restaurants</option>
+          <option value="fastDelivery">Fast Delivery</option>
+          <option value="nearby">Restaurants Nearby</option>
+          <option value="freeDelivery">Free Delivery</option>
+        </select>
       </div>
       {}
       <div className="res-container">

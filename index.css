@@ -1,10 +1,9 @@
 :root {
   font-family: sans-serif;
-  font-family: sans-serif;
 }
 
 body {
-  margin: 0px;
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -25,7 +24,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 60px;
+  padding: 0 60px;
   font-family: monospace;
 }
 
@@ -58,7 +57,7 @@ body {
 .logo img {
   width: 120px;
   height: 40px;
-  margin: 0 13;
+  margin: 0 13px;
 }
 
 .search {
@@ -110,6 +109,16 @@ body {
   align-items: center;
   justify-content: space-around;
   gap: 10px;
+}
+
+.select-filter {
+  border: none;
+  outline: none;
+  padding: 10px;
+  margin: 5px;
+}
+.select-filter option {
+  background-color: rgba(85, 86, 86, 0.173);
 }
 
 .filter-btn {
@@ -317,7 +326,6 @@ body {
   border-radius: 15px;
   background-color: rgba(128, 128, 128, 0.453);
 }
-
 .shimmer-card .shimmer-foot {
   width: 250px;
   height: 30px;
@@ -370,7 +378,6 @@ body {
   width: 200px;
   gap: 20px;
   color: rgb(91, 91, 91);
-  /* margin-top: 10px; */
 }
 
 .search-card .img-container img {
@@ -644,6 +651,7 @@ body {
   font-size: 12px;
   font-family: sans-serif;
 }
+
 .categoryMenu {
   display: flex;
   justify-content: space-between;
@@ -653,9 +661,11 @@ body {
   font-weight: bolder;
   cursor: pointer;
 }
+
 .categoryMenu i {
   font-size: 25px;
 }
+
 .user-class {
   margin: 10px;
   border: 1px solid rgba(128, 128, 128, 0.234);
@@ -668,13 +678,14 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+
 .user-class img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
 }
+
 .user-class div {
-  /* display: flex; */
   gap: 20px;
 }
 
@@ -745,7 +756,16 @@ body {
     margin: auto;
   }
   .footer-container {
-    width: 90%;
+    width: 80%;
+    padding: 20px;
+    margin: auto;
+  }
+  .footer-container .copy-right {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .filter {
     display: block;
   }
 }

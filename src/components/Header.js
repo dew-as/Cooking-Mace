@@ -38,20 +38,26 @@ const Header = () => {
               </Link>
             </li>
             <li>
+              <Link to={"/grocery"} className="no-underline">
+                <i className="bx bx-store-alt"></i>Grocery
+              </Link>
+            </li>
+            <li>
               <Link to={"/cart"} className="no-underline">
                 <i className="bx bx-store-alt"></i>Cart <span>0</span>
               </Link>
             </li>
+            <li
+              className="log-btn"
+              onClick={() =>
+                btnName ===
+                setBtnName(btnName === "Logout" ? "Login" : "Logout")
+              }
+            >
+              {btnName}
+            </li>
           </ul>
         </div>
-        <button
-          className="log-btn"
-          onClick={() =>
-            btnName === setBtnName(btnName === "Logout" ? "Login" : "Logout")
-          }
-        >
-          {btnName}
-        </button>
         <div
           className="menu-bar"
           onClick={() => {

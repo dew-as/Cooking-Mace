@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -9,8 +9,14 @@ import Offers from "./components/Offers";
 import Cart from "./components/Cart";
 import Search from "./components/Search";
 import Footer from "./components/Footer";
-import RestaurantCard from "./components/RestaurantCard";
 import RestaurantMenu from "./components/RestaurantMenu";
+// import Grocery from "./components/Grocery";
+// When we import like this this will always in our main application js file but we want this when we use it
+
+// for this we are using something known as lazy
+
+const Grocery = lazy(() => import("./components/Grocery"));
+// this will conditionally import Grocery
 
 const AppLayout = () => {
   return (
@@ -44,12 +50,20 @@ const appRoute = createBrowserRouter([
         element: <Cart />,
       },
       {
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<h1>Loading Grocery...</h1>}>
+            <Grocery />
+          </Suspense>
+        ),
+      },
+      {
         path: "/search",
         element: <Search />,
       },
       {
         path: "/restaurants/:id",
-        element: <RestaurantMenu />
+        element: <RestaurantMenu />,
       },
     ],
     errorElement: <Error />,
