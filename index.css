@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: sans-serif;
 }
@@ -279,35 +283,28 @@ body {
 
 .res-offers {
   display: flex;
-  align-items: center;
   gap: 10px;
   margin-top: 20px;
 }
 .res-offer {
   border: 1px solid gray;
+  width: 20%;
+  display: block;
+  text-align: center;
+  padding: 5px 2px;
   border-radius: 5px;
-  padding: 10px;
-}
-
-.res-offer div {
-  display: flex;
-  align-items: center;
-  gap: 5px;
 }
 
 .res-offer h5 {
-  font-size: 11px;
+  font-size: 8px;
   color: gray;
-  margin: 0;
-}
-.res-offer i {
-  font-size: 13px;
-  color: lightblue;
+  margin: 4px;
 }
 
-.res-offer span {
-  font-size: 8px;
-  color: rgb(47, 47, 47);
+.res-offer h4 {
+  font-size: 12px;
+  color: gray;
+  margin: 4px;
 }
 
 .shimmer-container {
@@ -728,6 +725,9 @@ body {
 }
 
 @media (max-width: 780px) {
+  .header {
+    width: 85%;
+  }
   .navItems {
     left: 120px;
   }
@@ -762,6 +762,9 @@ body {
   }
   .footer-container .copy-right {
     display: none;
+  }
+  .header {
+    width: 95%;
   }
 }
 @media (max-width: 500px) {
