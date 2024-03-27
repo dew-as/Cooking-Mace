@@ -17,19 +17,23 @@ const RestaurantMenu = () => {
   const params = useParams();
 
   const resMenuData = useResmenu(params);
+  console.log(resMenuData);
 
   useEffect(() => {
     if (resMenuData) {
-      const resDetails = resMenuData?.cards[0]?.card?.card?.info;
+      const resDetails = resMenuData?.cards[2]?.card?.card?.info;
       setResInfo(resDetails);
+      console.log(resMenuData);
       const dataMenu =
-        resMenuData?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+        resMenuData?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
       const filteredMenu = dataMenu.filter(
-        (item) => item?.card?.card?.itemCards
+        (item) =>
+          item?.card?.card?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
       );
       setResData(filteredMenu);
       const offers =
-        resMenuData?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
+        resMenuData?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers;
       setResOffer(offers);
     }
   }, [resMenuData]);
