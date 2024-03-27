@@ -58,4 +58,15 @@ const RestaurantCard = (props) => {
   );
 };
 
+export const withPromoted = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="text-sm absolute bg-green-700 p-1 m-1 z-10 rounded-lg text-white font-thin">Pure Veg</label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
+
 export default RestaurantCard;

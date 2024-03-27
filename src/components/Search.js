@@ -79,29 +79,44 @@ const Search = () => {
           className="bx bx-search"
         ></i>
       </div>
-      <div className="search-cards">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-4 w-full">
         {filteredCuisines?.map((cuisine) => (
-          <div key={cuisine?.id} className="search-card">
-            <div className="img-container">
-              <img src={CDN_URL + cuisine?.imageId} alt="res-logo" />
+          <div
+            key={cuisine?.id}
+            className="flex items-center relative p-4 w-full bg-white rounded-lg overflow-hidden shadow hover:shadow-md"
+          >
+            <div className="w-12 h-12 rounded-full bg-gray-100">
+              <img
+                className="w-12 h-12 rounded-full"
+                src={CDN_URL + cuisine?.imageId}
+                alt="res-logo"
+              />
             </div>
-            <div className="text-container">
-              <h5>{cuisine?.action?.text}</h5>
-              <h6>Dish</h6>
+            <div className="ml-3">
+              <p className="font-medium text-gray-800">
+                {cuisine?.action?.text}
+              </p>
+              <p className="text-sm text-gray-600">Dish</p>
             </div>
           </div>
         ))}
         {filterRestaurant?.map((restaurant) => (
-          <div key={restaurant?.info?.id} className="search-card">
-            <div className="img-container">
+          <div
+            key={restaurant?.info?.id}
+            className="flex items-center relative p-4 w-full bg-white rounded-lg overflow-hidden shadow hover:shadow-md"
+          >
+            <div className="w-12 h-12 rounded-full bg-gray-100">
               <img
+                className="w-12 h-12 rounded-full"
                 src={CDN_URL + restaurant?.info?.cloudinaryImageId}
                 alt="res-logo"
               />
             </div>
-            <div className="text-container">
-              <h5>{restaurant?.info?.name}</h5>
-              <h6>restaurant</h6>
+            <div className="ml-3">
+              <p className="font-medium text-gray-800">
+                {restaurant?.info?.name}
+              </p>
+              <p className="text-sm text-gray-600">restaurant</p>
             </div>
           </div>
         ))}
