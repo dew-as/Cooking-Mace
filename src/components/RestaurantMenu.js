@@ -125,10 +125,12 @@ const RestaurantMenu = () => {
           ? filterData.map((item) => (
               <MenuCard key={item?.card?.info?.id} item={item} />
             ))
-          : resData.map((category) => (
+          : resData.map((category,index) => (
               <MenuCategory
                 key={category?.card?.card?.title}
                 category={category}
+                showItem={index === 0 ? true : false}
+                // now this is a controlled component the chind is controlled by its parrent its doest have its own state
               />
             ))}
       </div>
