@@ -20,16 +20,11 @@ const Grocery = () => {
   if (listOffRestaurants.length === 0) {
     return <h1>Not rendered</h1>;
   } else {
-    console.log(listOffRestaurants);
   }
 
   return (
     <div style={{ width: "70%", margin: "auto" }}>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
-        {/* {listOffRestaurants.map((res) => {
-          {
-            console.log(res);
-          } */}
           <div class="relative mx-auto w-full">
             <a
               href="#"

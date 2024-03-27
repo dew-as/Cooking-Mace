@@ -11,7 +11,6 @@ const Offers = () => {
     background: "#364d79",
   };
   const onChange = (currentSlide) => {
-    console.log(currentSlide);
   };
   return (
     <div>

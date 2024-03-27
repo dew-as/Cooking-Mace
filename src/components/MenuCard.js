@@ -2,7 +2,6 @@ import { CDN_URL } from "../utils/constants";
 
 const MenuCard = (props) => {
   const { item } = props;
-  console.log("ribon", item.card);
   return (
     <div>
       <div className="menu-item">

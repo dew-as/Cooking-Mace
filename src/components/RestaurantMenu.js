@@ -17,13 +17,11 @@ const RestaurantMenu = () => {
   const params = useParams();
 
   const resMenuData = useResmenu(params);
-  console.log(resMenuData);
 
   useEffect(() => {
     if (resMenuData) {
       const resDetails = resMenuData?.cards[2]?.card?.card?.info;
       setResInfo(resDetails);
-      console.log(resMenuData);
       const dataMenu =
         resMenuData?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
       const filteredMenu = dataMenu.filter(

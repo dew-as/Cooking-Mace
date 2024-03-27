@@ -2,19 +2,15 @@ import { useState } from "react";
 import MenuCard from "./MenuCard";
 
 const MenuCategory = (props) => {
-  const [show, setShow] = useState([]);
   const { category } = props;
+  const [show, setShow] = useState(false);
+  const handleClick = () => {
+    setShow(!show);
+    console.log(show);
+  };
   return (
     <div>
-      <div
-        onClick={() => {
-          setShow((prev) => ({
-            ...prev,
-            [category?.card?.card?.title]: !prev[category?.card?.card?.title],
-          }));
-        }}
-        className="categoryMenu"
-      >
+      <div onClick={handleClick} className="categoryMenu">
         <span>
           {category?.card?.card?.title} (
           {category?.card?.card?.itemCards.length})
@@ -27,11 +23,10 @@ const MenuCategory = (props) => {
           }`}
         ></i>
       </div>
-      {show[category?.card?.card?.title]
-        ? category?.card?.card?.itemCards.map((item) => (
-            <MenuCard item={item} />
-          ))
-        : null}
+      {show &&
+        category?.card?.card?.itemCards.map((item) => (
+          <MenuCard key={item.card.info.id} item={item} />
+        ))}
     </div>
   );
 };
