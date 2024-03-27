@@ -14,6 +14,8 @@ const RestaurantMenu = () => {
   const [filterData, setFilterData] = useState([]);
   let veg = [];
 
+  const [showIndex, setShowIndex] = useState(null);
+
   const params = useParams();
 
   const resMenuData = useResmenu(params);
@@ -125,12 +127,12 @@ const RestaurantMenu = () => {
           ? filterData.map((item) => (
               <MenuCard key={item?.card?.info?.id} item={item} />
             ))
-          : resData.map((category,index) => (
+          : resData.map((category, index) => (
               <MenuCategory
                 key={category?.card?.card?.title}
                 category={category}
-                showItem={index === 0 ? true : false}
-                // now this is a controlled component the chind is controlled by its parrent its doest have its own state
+                showItem={index === showIndex ? true : false}
+                setShowIndex={() => setShowIndex(index)}
               />
             ))}
       </div>

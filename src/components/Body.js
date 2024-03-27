@@ -24,7 +24,7 @@ const Body = () => {
     const json = await data.json();
 
     const restaurants =
-      json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     setListOffRestaurants(restaurants);
     setFilterRestaurant(restaurants);
@@ -67,7 +67,7 @@ const Body = () => {
   if (networkStatus === false)
     return <h1>You'r Offline Now Please Check The Internet Connection ! 👀</h1>;
 
-  return listOffRestaurants.length === 0 && !inputData ? (
+  return listOffRestaurants === 0 && !inputData ? (
     <Shimmer />
   ) : (
     <div className="body">

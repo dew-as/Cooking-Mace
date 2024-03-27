@@ -1,11 +1,13 @@
-import { useState } from "react";
 import MenuCard from "./MenuCard";
 
 const MenuCategory = (props) => {
-  const { category,showItem } = props;
+  const { category, showItem, setShowIndex } = props;
+  const handleClick = () => {
+    setShowIndex();
+  };
   return (
     <div>
-      <div className="categoryMenu">
+      <div onClick={handleClick} className="categoryMenu">
         <span>
           {category?.card?.card?.title} (
           {category?.card?.card?.itemCards.length})
