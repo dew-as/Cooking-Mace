@@ -2,6 +2,7 @@ import { CDN_URL } from "../utils/constants";
 
 const MenuCard = (props) => {
   const { item } = props;
+  console.log("ribon", item.card);
   return (
     <div>
       <div className="menu-item">
@@ -17,13 +18,13 @@ const MenuCard = (props) => {
           <div className="ribbon ">
             <i
               style={
-                item.card.info.ribbon.text
+                item?.card?.info?.ribbon?.text
                   ? { color: "orange" }
                   : { color: "white" }
               }
               className="bx bxs-star"
             ></i>
-            {item.card.info.ribbon.text}
+            {item?.card?.info?.ribbon?.text}
           </div>
 
           <h6>{item?.card?.info?.name}</h6>
@@ -42,7 +43,7 @@ const MenuCard = (props) => {
           </p>
         </div>
         <div className="item-img">
-          {item.card.info.imageId && (
+          {item?.card?.info?.imageId && (
             <img src={CDN_URL + item?.card?.info?.imageId} alt="" />
           )}
           <button>ADD</button>

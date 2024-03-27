@@ -116,8 +116,8 @@ const RestaurantMenu = () => {
                   )
                 )
               );
-              setFilterData([].concat(...veg));
-              setIsVeg((prev) => !prev);
+              setFilterData(...veg);
+              setIsVeg((prev) => (prev === true ? false : true));
             }}
             className={`bx bx-food-tag ${isVeg ? "active" : ""}`}
           ></i>
