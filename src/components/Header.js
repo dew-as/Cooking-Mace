@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import LOGO_IMG from "../utils/logo.png";
+import { UserContext } from "../utils/globalContext";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const [btnName, setBtnName] = useState("Login");
+  const { loggedUser } = useContext(UserContext);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -107,6 +109,9 @@ const Header = () => {
             >
               {btnName}
             </a>
+            <span className="cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
+              {loggedUser}
+            </span>
           </div>
 
           <div className="flex justify-center md:block">
