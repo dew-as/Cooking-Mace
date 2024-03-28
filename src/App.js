@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -10,18 +10,26 @@ import Cart from "./components/Cart";
 import Search from "./components/Search";
 import Footer from "./components/Footer";
 import RestaurantMenu from "./components/RestaurantMenu";
-// import Grocery from "./components/Grocery";
-// When we import like this this will always in our main application js file but we want this when we use it
-
-// for this we are using something known as lazy
+import { UserContext } from "./utils/globalContext";
 
 const Grocery = lazy(() => import("./components/Grocery"));
-// this will conditionally import Grocery
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState();
+
+  useEffect(() => {
+    // this will make an api call and check the user is auth or not
+    const data = {
+      name: "Aswindev",
+    };
+    setUserName(data.name);
+  }, []);
+
   return (
     <div className="app">
-      <Header />
+      <UserContext.Provider value={{ loggedUser: userName }}>
+        <Header />
+      </UserContext.Provider>
       <Outlet />
       <Footer />
     </div>
