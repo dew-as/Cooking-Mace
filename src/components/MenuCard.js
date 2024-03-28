@@ -1,7 +1,10 @@
 import { CDN_URL } from "../utils/constants";
+import RestaurantMenu from "./RestaurantMenu";
 
 const MenuCard = (props) => {
-  const { item } = props;
+  const { item, data } = props;
+  console.log(data); 
+  // now the data is coming from RestaurantMenu and we are passing that from child to child as props this is known as props drilling
   return (
     <div>
       <div className="menu-item">

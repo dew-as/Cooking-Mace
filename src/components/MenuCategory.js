@@ -1,10 +1,11 @@
 import MenuCard from "./MenuCard";
 
 const MenuCategory = (props) => {
-  const { category, showItem, setShowIndex } = props;
+  const { category, showItem, setShowIndex,data } = props;
   const handleClick = () => {
     setShowIndex();
   };
+
   return (
     <div>
       <div onClick={handleClick} className="categoryMenu">
@@ -22,7 +23,7 @@ const MenuCategory = (props) => {
       </div>
       {showItem &&
         category?.card?.card?.itemCards.map((item) => (
-          <MenuCard key={item.card.info.id} item={item} />
+          <MenuCard key={item.card.info.id} item={item} data={data} />
         ))}
     </div>
   );

@@ -14,6 +14,8 @@ const RestaurantMenu = () => {
   const [filterData, setFilterData] = useState([]);
   let veg = [];
 
+  const data = "dummy data";
+
   const [showIndex, setShowIndex] = useState(null);
 
   const params = useParams();
@@ -26,6 +28,7 @@ const RestaurantMenu = () => {
       setResInfo(resDetails);
       const dataMenu =
         resMenuData?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+      console.log(resMenuData?.cards);
       const filteredMenu = dataMenu.filter(
         (item) =>
           item?.card?.card?.["@type"] ===
@@ -132,7 +135,10 @@ const RestaurantMenu = () => {
                 key={category?.card?.card?.title}
                 category={category}
                 showItem={index === showIndex ? true : false}
-                setShowIndex={() => setShowIndex(index)}
+                setShowIndex={() =>
+                  setShowIndex(showIndex === index ? null : index)
+                }
+                data={data}
               />
             ))}
       </div>
