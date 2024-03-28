@@ -26,13 +26,13 @@ const AppLayout = () => {
   }, []);
 
   return (
-    <div className="app">
-      <UserContext.Provider value={{ loggedUser: userName }}>
+    <UserContext.Provider value={{ loggedUser: userName, setUserName }}>
+      <div className="app">
         <Header />
-      </UserContext.Provider>
-      <Outlet />
-      <Footer />
-    </div>
+        <Outlet />
+        <Footer />
+      </div>
+    </UserContext.Provider>
   );
 };
 

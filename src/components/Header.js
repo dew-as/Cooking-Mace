@@ -7,7 +7,25 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const [btnName, setBtnName] = useState("Login");
-  const { loggedUser } = useContext(UserContext);
+  const { loggedUser, setUserName } = useContext(UserContext);
+
+  const peopleNames = [
+    "Alice",
+    "Benjamin",
+    "Clara",
+    "David",
+    "Emma",
+    "Frank",
+    "Grace",
+    "Henry",
+    "Isabella",
+    "Jack",
+  ];
+
+  const handleUserNameChange = () => {
+    const randomIndex = Math.floor(Math.random() * peopleNames.length);
+    setUserName(peopleNames[randomIndex]);
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -109,7 +127,10 @@ const Header = () => {
             >
               {btnName}
             </a>
-            <span className="cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0">
+            <span
+              onClick={handleUserNameChange}
+              className="cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+            >
               {loggedUser}
             </span>
           </div>
