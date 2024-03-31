@@ -28,7 +28,6 @@ const RestaurantMenu = () => {
       setResInfo(resDetails);
       const dataMenu =
         resMenuData?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-      console.log(resMenuData?.cards);
       const filteredMenu = dataMenu.filter(
         (item) =>
           item?.card?.card?.["@type"] ===

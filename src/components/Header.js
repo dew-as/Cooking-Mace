@@ -2,12 +2,15 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import LOGO_IMG from "../utils/logo.png";
 import { UserContext } from "../utils/globalContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const [btnName, setBtnName] = useState("Login");
   const { loggedUser, setUserName } = useContext(UserContext);
+
+  const cartItems = useSelector((store) => store.cart.items);
 
   const peopleNames = [
     "Alice",
@@ -92,34 +95,34 @@ const Header = () => {
           <div className="flex flex-col md:flex-row md:mx-6">
             <a
               onClick={() => navigate("/")}
-              className="flex gap-1 items-center cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+              className="flex gap-1 items-center cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-400 md:mx-4 md:my-0"
             >
               <i className="bx bx-home"></i>
               Home
             </a>
             <a
               onClick={() => navigate("/search")}
-              className="flex gap-1 items-center cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+              className="flex gap-1 items-center cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-400 md:mx-4 md:my-0"
             >
               <i className="bx bx-search"></i>
               Search
             </a>
             <a
               onClick={() => navigate("/about")}
-              className="flex gap-1 items-center cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+              className="flex gap-1 items-center cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-400 md:mx-4 md:my-0"
             >
               <i className="bx bx-info-circle"></i>
               About
             </a>
             <a
               onClick={() => navigate("/grocery")}
-              className="flex gap-1 items-center cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+              className="flex gap-1 items-center cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-400 md:mx-4 md:my-0"
             >
               <i className="bx bx-store-alt"></i>
               Grocery
             </a>
             <a
-              className="cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+              className="cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-400 md:mx-4 md:my-0"
               onClick={() =>
                 btnName ===
                 setBtnName(btnName === "Logout" ? "Login" : "Logout")
@@ -129,7 +132,7 @@ const Header = () => {
             </a>
             <span
               onClick={handleUserNameChange}
-              className="cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+              className="cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-400 md:mx-4 md:my-0"
             >
               {loggedUser}
             </span>
@@ -155,7 +158,9 @@ const Header = () => {
                 />
               </svg>
 
-              <span className="cursor-pointer absolute top-0 left-0 p-1 text-xs text-white bg-blue-500 rounded-full"></span>
+              <span className="absolute bottom-2 left-5 text-xs bg-orange-400 p-1 rounded-full text-white">
+                {cartItems.length}
+              </span>
             </a>
           </div>
         </div>

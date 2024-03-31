@@ -1,10 +1,17 @@
 import { CDN_URL } from "../utils/constants";
-import RestaurantMenu from "./RestaurantMenu";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 const MenuCard = (props) => {
   const { item, data } = props;
-  console.log(data); 
+  const dispatch = useDispatch();
+  //console.log(data);
   // now the data is coming from RestaurantMenu and we are passing that from child to child as props this is known as props drilling
+
+  const handleCart = (item) => {
+    dispatch(addItem({ item, quantity: 1 }));
+  };
+
   return (
     <div>
       <div className="menu-item">
@@ -48,7 +55,7 @@ const MenuCard = (props) => {
           {item?.card?.info?.imageId && (
             <img src={CDN_URL + item?.card?.info?.imageId} alt="" />
           )}
-          <button>ADD</button>
+          <button onClick={() => handleCart(item)}>ADD +</button>
         </div>
       </div>
     </div>
