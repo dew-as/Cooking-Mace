@@ -1,14 +1,14 @@
 const ResOffer = (props) => {
   const { offer } = props;
   return (
-    <div className="res-offer">
-      <h4>
-        <i style={{ color: "tomato" }} className="bx bxs-offer"></i>
+    <div className="p-2 border">
+      <span className="text-xs">
+        <i className="bx bxs-offer mr-2" style={{ color: "tomato" }}></i>
         {offer?.info?.header}
-      </h4>
-      <h5>
-        {offer?.info?.couponCode} | {offer?.info?.description}
-      </h5>
+      </span>
+      <span className="flex" style={{ fontSize: "9px" }}>
+        {offer?.info?.couponCode} | {offer?.info?.description || "ABOVE ₹499"}
+      </span>
     </div>
   );
 };

@@ -1,43 +1,126 @@
 const Footer = () => {
   return (
-    <div className="footer">
-      <div className="footer-container">
-        <div className="copy-right">
-          <div className="logo">
-            <i className="bx bx-cheese bx-tada"></i>
-            <h4>Cooking Mace</h4>
+    <div className="relative mt-16 bg-orange-400">
+      <div className="px-4 pt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+        <div className="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
+          <div className="md:max-w-md lg:col-span-2">
+            <a
+              href="/"
+              aria-label="Go home"
+              title="Company"
+              className="inline-flex items-center"
+            >
+              <i className="bx bx-restaurant text-white text-4xl text-teal-accent-400"></i>
+              <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase font-mono">
+                Cooking Mace
+              </span>
+            </a>
+            <div className="mt-4 lg:max-w-sm">
+              <p className="text-sm text-deep-purple-50 font-semibold">
+                Relax, savor, repeat. Your culinary journey starts here.
+              </p>
+              <p className="mt-4 text-sm text-deep-purple-50 font-semibold">
+                Convenience served hot. Happiness delivered fresh. Bon appétit!
+              </p>
+            </div>
           </div>
-          <div className="text">
-            <p>© 2023 Bundl Technologies Pvt. Ltd</p>
+          <div className="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
+            <div>
+              <p className="font-semibold tracking-wide text-teal-accent-400">
+                Company
+              </p>
+              <ul className="mt-2 space-y-2">
+                <li className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">
+                  About
+                </li>
+                <li className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">
+                  Careers
+                </li>
+                <li className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">
+                  Team
+                </li>
+                <li className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">
+                  Grocery Mart
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-semibold tracking-wide text-teal-accent-400">
+                Contact Us
+              </p>
+              <ul className="mt-2 space-y-2">
+                <li className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">
+                  Help & Support
+                </li>
+                <li className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">
+                  Partner with us
+                </li>
+                <li className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">
+                  Ride with us
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-semibold tracking-wide text-teal-accent-400">
+                Legal
+              </p>
+              <ul className="mt-2 space-y-2">
+                <li className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">
+                  Terms & Conditions
+                </li>
+                <li className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">
+                  Cookie Policy
+                </li>
+                <li className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">
+                  Privacy Policy
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-semibold tracking-wide text-teal-accent-400">
+                We deliver to:
+              </p>
+              <ul className="mt-2 space-y-2">
+                <li className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">
+                  Coimbatore
+                </li>
+                <li className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">
+                  Mysore
+                </li>
+                <li className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">
+                  Trivandrum
+                </li>
+                <li className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">
+                  Kodaikanal
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div className="company">
-          <h5>Company</h5>
-          <h6>About</h6>
-          <h6>Careers</h6>
-          <h6>Teams</h6>
-          <h6>Cooking Mace One</h6>
-          <h6>Cooking Mace Instamart</h6>
-          <h6>Cooking Mace Genie</h6>
-        </div>
-        <div className="contact-us">
-          <h5>Contact us</h5>
-          <h6>Help & Support</h6>
-          <h6>Partner with us</h6>
-          <h6>Ride with us</h6>
-          <h5>Legal</h5>
-          <h6>Terms & Conditions</h6>
-          <h6>Cookie Policy</h6>
-          <h6>Privacy Policy</h6>
-        </div>
-        <div className="places">
-          <h5>We deliver to</h5>
-          <h6>Bengaluru</h6>
-          <h6>Gurgaon</h6>
-          <h6>Hyderabad</h6>
-          <h6>Delhi</h6>
-          <h6>Mumbai</h6>
-          <h6>Pune</h6>
+        <div className="flex flex-col justify-between pt-5 pb-10 border-t border-deep-purple-accent-200 sm:flex-row">
+          <p className="text-sm text-gray-100">
+            © Copyright 2024 Dewas All rights reserved.
+          </p>
+          <div className="flex items-center mt-4 space-x-4 sm:mt-0">
+            <a
+              href="/"
+              className="transition-colors duration-300 text-deep-purple-100 hover:text-teal-accent-400"
+            >
+              <i className="bx bxl-gmail"></i>
+            </a>
+            <a
+              href="/"
+              className="transition-colors duration-300 text-deep-purple-100 hover:text-teal-accent-400"
+            >
+              <i className="bx bxl-linkedin-square"></i>
+            </a>
+            <a
+              href="/"
+              className="transition-colors duration-300 text-deep-purple-100 hover:text-teal-accent-400"
+            >
+              <i className="bx bxl-github"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>

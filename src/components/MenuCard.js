@@ -14,8 +14,8 @@ const MenuCard = (props) => {
 
   return (
     <div>
-      <div className="menu-item">
-        <div className="item-details">
+      <div className="flex justify-between p-4">
+        <div className="w-9/12">
           <i
             style={
               item?.card?.info?.itemAttribute?.vegClassifier === "VEG"
@@ -24,7 +24,7 @@ const MenuCard = (props) => {
             }
             className="bx bx-food-tag"
           ></i>
-          <div className="ribbon ">
+          <div className="text-xs text-orange-500">
             <i
               style={
                 item?.card?.info?.ribbon?.text
@@ -35,14 +35,16 @@ const MenuCard = (props) => {
             ></i>
             {item?.card?.info?.ribbon?.text}
           </div>
-
-          <h6>{item?.card?.info?.name}</h6>
-          <span>
-            ₹{" "}
-            {item?.card?.info?.price / 100 ||
-              item?.card?.info?.defaultPrice / 100}
+          <h6 className="font-semibold text-gray-700">
+            {item?.card?.info?.name}
+          </h6>
+          <span className="font-semibold text-gray-700">
+            ₹
+            {Math.floor(
+              (item?.card?.info?.price || item?.card?.info?.defaultPrice) / 100
+            )}
           </span>
-          <p>
+          <p className="tex-xs">
             {item?.card?.info?.description?.length > 50
               ? item?.card?.info?.description
                   .split(" ")
@@ -51,11 +53,20 @@ const MenuCard = (props) => {
               : item?.card?.info?.description}
           </p>
         </div>
-        <div className="item-img">
+        <div className="w-3/12 text-center">
           {item?.card?.info?.imageId && (
-            <img src={CDN_URL + item?.card?.info?.imageId} alt="" />
+            <img
+              className="rounded-md"
+              src={CDN_URL + item?.card?.info?.imageId}
+              alt=""
+            />
           )}
-          <button onClick={() => handleCart(item)}>ADD +</button>
+          <span
+            className="cursor-pointer relative xl:bottom-10 md:bottom-9 sm:bottom-8 text-green-500 bg-white p-2 rounded-lg text-xs font-semibold z-50"
+            onClick={() => handleCart(item)}
+          >
+            ADD +
+          </span>
         </div>
       </div>
     </div>

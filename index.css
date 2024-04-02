@@ -11,11 +11,6 @@ body {
   box-sizing: border-box;
 }
 
-.body {
-  width: 80%;
-  margin: auto;
-}
-
 .header-container {
   box-shadow: 10px 5px 5px rgba(25, 24, 24, 0.092);
   background-color: whitesmoke;
@@ -281,32 +276,6 @@ body {
   font-size: 15px;
 }
 
-.res-offers {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-.res-offer {
-  border: 1px solid gray;
-  width: 20%;
-  display: block;
-  text-align: center;
-  padding: 5px 2px;
-  border-radius: 5px;
-}
-
-.res-offer h5 {
-  font-size: 8px;
-  color: gray;
-  margin: 4px;
-}
-
-.res-offer h4 {
-  font-size: 12px;
-  color: gray;
-  margin: 4px;
-}
-
 .shimmer-container {
   width: 75%;
   display: flex;
@@ -385,58 +354,6 @@ body {
 
 .search-card .text-container h6 {
   margin-top: -15px;
-}
-
-.footer {
-  background-color: black;
-  color: aliceblue;
-  margin-top: 20px;
-}
-
-.footer-container {
-  width: 60%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  padding: 50px;
-}
-
-.footer-container .copy-right {
-  display: block;
-  width: 25%;
-  margin-right: 20px;
-}
-
-.footer-container .copy-right .logo {
-  display: flex;
-  justify-content: baseline;
-  align-items: center;
-  gap: 10px;
-  color: rgb(255, 140, 0);
-}
-
-.footer-container .copy-right .logo i {
-  font-size: 40px;
-}
-
-.footer-container .copy-right .text {
-  font-size: 10px;
-}
-
-.footer-container .company {
-  width: 25%;
-}
-
-.footer-container .contact-us {
-  width: 25%;
-}
-
-.footer-container .places {
-  width: 25%;
-}
-
-.footer-container h6 {
-  color: gray;
 }
 
 .search-container {
@@ -593,62 +510,6 @@ body {
   font-weight: lighter;
   color: green;
 }
-.menu-item {
-  border-top: 1px solid gray;
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.menu-item .item-details {
-  display: block;
-  margin-top: 20px;
-}
-.menu-item .item-details i {
-  color: green;
-}
-.menu-item .item-details h6 {
-  font-size: 14px;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  margin: 5px 0;
-}
-.menu-item .item-details span {
-  font-size: small;
-}
-.menu-item .item-details p {
-  color: gray;
-  font-size: 11px;
-}
-.menu-item .item-img {
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
-  display: grid;
-  place-items: center;
-}
-.menu-item .item-img img {
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
-}
-.menu-item .item-img button {
-  border-radius: 3px;
-  background-color: white;
-  color: green;
-  border: 1px solid rgba(128, 128, 128, 0.477);
-  outline: none;
-  padding: 5px 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.ribbon {
-  color: orange;
-  font-weight: bolder;
-  font-size: 12px;
-  font-family: sans-serif;
-}
-
 .categoryMenu {
   display: flex;
   justify-content: space-between;
@@ -738,9 +599,6 @@ body {
     width: 75%;
     margin: auto;
   }
-  .footer-container {
-    width: 80%;
-  }
 }
 
 @media (max-width: 650px) {
@@ -754,14 +612,6 @@ body {
   .menu-container {
     width: 90%;
     margin: auto;
-  }
-  .footer-container {
-    width: 80%;
-    padding: 20px;
-    margin: auto;
-  }
-  .footer-container .copy-right {
-    display: none;
   }
   .header {
     width: 95%;

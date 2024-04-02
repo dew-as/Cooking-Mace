@@ -36,6 +36,9 @@ const RestaurantMenu = () => {
       setResData(filteredMenu);
       const offers =
         resMenuData?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers;
+      if (offers.length > 4) {
+        offers.length = 4;
+      }
       setResOffer(offers);
     }
   }, [resMenuData]);
@@ -98,7 +101,7 @@ const RestaurantMenu = () => {
             <div className="count">{totalRatingsString}</div>
           </div>
         </div>
-        <div className="res-offers">
+        <div className="xl:flex gap-1 mt-3 sm:block">
           {resOffer.map((offer) => (
             <ResOffer key={offer?.info?.offerIds[0]} offer={offer} />
           ))}

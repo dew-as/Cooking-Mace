@@ -1,7 +1,7 @@
 import MenuCard from "./MenuCard";
 
 const MenuCategory = (props) => {
-  const { category, showItem, setShowIndex,data } = props;
+  const { category, showItem, setShowIndex, data } = props;
   const handleClick = () => {
     setShowIndex();
   };

@@ -7,14 +7,13 @@ const cartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-      console.log(action);
       state.items.push(action.payload);
     },
     removeItem: (state, action) => {
       const removeItem = state.items.indexOf(action.payload);
       state.items.splice(removeItem, 1);
     },
-    clearCart: () => {
+    clearCart: (state) => {
       state.items.length = 0;
     },
   },

@@ -67,10 +67,10 @@ const Body = () => {
   if (networkStatus === false)
     return <h1>You'r Offline Now Please Check The Internet Connection ! 👀</h1>;
 
-  return listOffRestaurants === 0 && !inputData ? (
+  return listOffRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
+    <div className="w-9/12 m-auto">
       <div className="filter">
         {/* <span style={{ color: networkStatus ? "green" : "red" }}>
           {networkStatus ? "🍏- Online" : "🍎- Offline"}
@@ -112,7 +112,7 @@ const Body = () => {
       </div>
       {}
       <div className="res-container">
-        {listOffRestaurants.length === 0 ? (
+        {listOffRestaurants.length === 0 && inputData ? (
           <h1>Can't find Data ! 🧐</h1>
         ) : (
           listOffRestaurants?.map((restaurant) => (
