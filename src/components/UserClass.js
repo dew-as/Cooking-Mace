@@ -12,20 +12,7 @@ class UserClass extends React.Component {
       },
     };
   }
-
-  async componentDidMount() {
-    const data = await fetch("https://api.github.com/users/dew-as");
-    const json = await data.json();
-    console.log(json);
-    console.log(json.bio);
-
-    this.setState({
-      userInfo: json,
-    });
-  }
-
-  componentDidUpdate(prevProps, prevState) {}
-
+  
   render() {
     const currentDate = new Date();
     const day = currentDate.getDate();

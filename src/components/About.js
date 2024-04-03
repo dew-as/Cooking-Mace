@@ -14,7 +14,7 @@ class About extends Component {
       <div className="about">
         <UserContext.Consumer>
           {({ loggedUser }) => {
-            return <h1 className="p-1 text-xs m-2">About/{loggedUser}</h1>;
+            return <h1 className="p-1 text-xs m-2">About/{loggedUser?.name}</h1>;
           }}
         </UserContext.Consumer>
         <UserClass />

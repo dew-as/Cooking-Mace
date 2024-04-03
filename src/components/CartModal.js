@@ -3,6 +3,7 @@ import { Drawer } from "antd";
 import { useSelector } from "react-redux";
 import { CDN_URL } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
+import noImg from "../../public/noFood.png";
 
 const CartModal = () => {
   const navigate = useNavigate();
@@ -15,9 +16,9 @@ const CartModal = () => {
     setOpen(false);
   };
   const handleCheckout = () => {
-    setOpen(false)
-    navigate("/cart")
-  }
+    setOpen(false);
+    navigate("/cart");
+  };
   return (
     <div>
       <div className="flex justify-center md:block">
@@ -54,7 +55,11 @@ const CartModal = () => {
             <div className="w-3/12 text-center">
               <img
                 className="rounded-md"
-                src={CDN_URL + item?.item.card?.info?.imageId}
+                src={
+                  item?.item.card?.info?.imageId
+                    ? CDN_URL + item?.item.card?.info?.imageId
+                    : noImg
+                }
                 alt=""
               />
             </div>
@@ -63,7 +68,7 @@ const CartModal = () => {
                 {item?.item.card?.info?.name}
               </p>
               <div className="flex justify-between">
-                <span>(1)</span>
+                <span>({item.quantity})</span>
                 <div className="flex justify-end gap-2">
                   <p className="text-black font-bold text-xl px-2 rounded-md">
                     +

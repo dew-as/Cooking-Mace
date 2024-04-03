@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MenuCard from "./MenuCard";
 import { clearCart } from "../utils/cartSlice";
 import cartimg from "../../public/emptyCart.gif";
+import { CDN_URL } from "../utils/constants";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,11 @@ const Cart = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+  const handleOrder = () => {
+    console.log("payment");
+  };
+
+  console.log(cartItems);
 
   if (cartItems.length === 0)
     return (
@@ -34,15 +40,56 @@ const Cart = () => {
   return (
     <>
       <div className="w-6/12 m-auto p-3">
-        <h1 className="p-2 m-2 text-2xl font-bold">Cart</h1>
-        <button
-          onClick={handleClearCart}
-          className="text-sm bg-black text-white p-2 m-1 rounded-md"
-        >
-          Clear Cart
-        </button>
+        <h1 className="p-2 m-2 text-2xl font-bold">
+          Cart <i className="bx bxs-cart-alt"></i>
+        </h1>
+        <div className="flex gap-2 mb-3">
+          <button
+            onClick={handleClearCart}
+            className="text-sm bg-black text-white p-2 m-1 rounded-md"
+          >
+            Clear Cart
+          </button>
+          <button
+            onClick={handleOrder}
+            className="text-sm bg-black text-white p-2 m-1 rounded-md"
+          >
+            Order Now
+          </button>
+        </div>
         {cartItems.map((item) => (
-          <MenuCard key={item.item.card.info.id} item={item.item} />
+          <div
+            key={item.item.card.info.id}
+            className="flex justify-between p-3 border bottom-1 mb-1"
+          >
+            <div className="w-3/12 text-center">
+              <img
+                className="rounded-md"
+                src={
+                  item?.item.card?.info?.imageId
+                    ? CDN_URL + item?.item.card?.info?.imageId
+                    : noImg
+                }
+                alt=""
+              />
+            </div>
+            <div className="w-9/12">
+              <p className="font-semibold p-1 text-sm mb-1">
+                {item?.item.card?.info?.name}
+              </p>
+              <div className="flex justify-between">
+                <span>({item.quantity})</span>
+                <div className="flex justify-end gap-2">
+                  <p className="text-black font-bold text-xl px-2 rounded-md">
+                    +
+                  </p>
+                  <p className="text-black font-bold text-xl px-2 rounded-md">
+                    -
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         ))}
         <div className="flex justify-between bg-gray-200 w-full mt-3">
           <span className="mx-4 p-2 font-semibold">Total Price </span>

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LOGO_IMG from "../utils/logo.png";
 import { UserContext } from "../utils/globalContext";
@@ -8,25 +8,15 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const [btnName, setBtnName] = useState("Login");
-  const { loggedUser, setUserName } = useContext(UserContext);
+  const { loggedUser } = useContext(UserContext);
+  const [userData, setUserData] = useState("");
 
-  const peopleNames = [
-    "Alice",
-    "Benjamin",
-    "Clara",
-    "David",
-    "Emma",
-    "Frank",
-    "Grace",
-    "Henry",
-    "Isabella",
-    "Jack",
-  ];
+  useEffect(() => {
+    setUserData(loggedUser);
+    setBtnName(loggedUser?.id ? "Logout" : "Login");
+  }, [loggedUser]);
 
-  const handleUserNameChange = () => {
-    const randomIndex = Math.floor(Math.random() * peopleNames.length);
-    setUserName(peopleNames[randomIndex]);
-  };
+  console.log(loggedUser?.name, loggedUser?.id);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -92,7 +82,7 @@ const Header = () => {
         >
           <div className="flex flex-col md:flex-row md:mx-6">
             <a
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/home")}
               className="flex gap-1 items-center cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-400 md:mx-4 md:my-0"
             >
               <i className="bx bx-home"></i>
@@ -119,20 +109,11 @@ const Header = () => {
               <i className="bx bx-store-alt"></i>
               Grocery
             </a>
-            <a
-              className="cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-400 md:mx-4 md:my-0"
-              onClick={() =>
-                btnName ===
-                setBtnName(btnName === "Logout" ? "Login" : "Logout")
-              }
-            >
+            <a className="cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-400 md:mx-4 md:my-0">
               {btnName}
             </a>
-            <span
-              onClick={handleUserNameChange}
-              className="cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-400 md:mx-4 md:my-0"
-            >
-              {loggedUser}
+            <span className="cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-400 md:mx-4 md:my-0">
+              {userData?.name}
             </span>
           </div>
           <CartModal />

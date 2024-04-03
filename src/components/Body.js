@@ -1,9 +1,10 @@
 import RestaurantCard, { withPromoted } from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useNetworkStatus from "../utils/useNetworkStatus";
 import noData from "../../public/AboutUs.gif";
+import { UserContext } from "../utils/globalContext";
 
 const Body = () => {
   const [filterRestaurant, setFilterRestaurant] = useState([]);
@@ -37,6 +38,10 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const { loggedUser } = useContext(UserContext);
+
+  console.log(loggedUser);
 
   const fetchData = async () => {
     const data = await fetch(
