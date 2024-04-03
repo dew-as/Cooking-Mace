@@ -1,6 +1,7 @@
 import { CDN_URL } from "../utils/constants";
 import { addItem } from "../utils/cartSlice";
 import { useDispatch } from "react-redux";
+import noImg from "../../public/noFood.png";
 
 const MenuCard = (props) => {
   const { item, data } = props;
@@ -11,7 +12,7 @@ const MenuCard = (props) => {
   const handleCart = (item) => {
     dispatch(addItem({ item, quantity: 1 }));
   };
-
+  let imageId;
   return (
     <div>
       <div className="flex justify-between p-4">
@@ -54,13 +55,15 @@ const MenuCard = (props) => {
           </p>
         </div>
         <div className="w-3/12 text-center">
-          {item?.card?.info?.imageId && (
-            <img
-              className="rounded-md"
-              src={CDN_URL + item?.card?.info?.imageId}
-              alt=""
-            />
-          )}
+          <img
+            className="rounded-md"
+            src={
+              (imageId = item?.card?.info?.imageId
+                ? CDN_URL + item?.card?.info?.imageId
+                : noImg)
+            }
+            alt=""
+          />
           <span
             className="cursor-pointer relative xl:bottom-10 md:bottom-9 sm:bottom-8 text-green-500 bg-white p-2 rounded-lg text-xs font-semibold z-50"
             onClick={() => handleCart(item)}

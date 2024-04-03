@@ -101,69 +101,6 @@ body {
   display: none;
 }
 
-.filter {
-  padding: 20px;
-  margin-left: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 10px;
-}
-
-.select-filter {
-  border: none;
-  outline: none;
-  padding: 10px;
-  margin: 5px;
-}
-.select-filter option {
-  background-color: rgba(85, 86, 86, 0.173);
-}
-
-.filter-btn {
-  padding: 7px;
-  border-radius: 5px;
-  border: none;
-  color: gray;
-  cursor: pointer;
-}
-
-.filter-btn:focus {
-  background-color: rgba(255, 136, 0, 0.996);
-  color: white;
-}
-
-.filter .search-res {
-  display: flex;
-}
-
-.filter .search-res input {
-  border: 1px solid rgba(255, 136, 0, 0.453);
-  border-right: none;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  color: gray;
-  text-align: center;
-  outline: rgba(255, 136, 0, 0.996);
-}
-
-.filter .search-res button {
-  border: none;
-  background-color: rgb(255, 136, 0);
-  padding: 5px 15px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  color: rgb(245, 245, 245);
-}
-
-.res-container {
-  display: flex;
-  gap: 10px;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  padding: 10px;
-}
-
 .card-container {
   width: 250px;
   height: 100%;

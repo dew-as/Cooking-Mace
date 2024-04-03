@@ -5,6 +5,7 @@ import useResmenu from "../utils/useResmenu";
 import MenuCard from "./MenuCard";
 import MenuCategory from "./MenuCategory";
 import ResOffer from "./ResOffer";
+import { CDN_URL } from "../utils/constants";
 
 const RestaurantMenu = () => {
   const [resData, setResData] = useState([]);
@@ -48,6 +49,7 @@ const RestaurantMenu = () => {
   }
 
   const {
+    cloudinaryImageId,
     areaName,
     avgRating,
     city,
@@ -68,7 +70,7 @@ const RestaurantMenu = () => {
         </div>
         <div className="res-info">
           <div>
-            <h1 className="res-name">{name}</h1>
+            <h1 className="res-name font-semibold">{name}</h1>
             <p className="common-gray">{cuisines?.join(" ,")}</p>
             <p className="common-gray">
               {areaName}, {sla?.lastMileTravelString}

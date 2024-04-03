@@ -12,10 +12,9 @@ class About extends Component {
   render() {
     return (
       <div className="about">
-        <h1>User Details</h1>
         <UserContext.Consumer>
           {({ loggedUser }) => {
-            return <h1 className="p-1 text-xs">{loggedUser}</h1>;
+            return <h1 className="p-1 text-xs m-2">About/{loggedUser}</h1>;
           }}
         </UserContext.Consumer>
         <UserClass />
