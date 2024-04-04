@@ -2,7 +2,12 @@ import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Outlet,
+  RouterProvider,
+  useNavigate,
+} from "react-router-dom";
 import Error from "./components/Error";
 import About from "./components/About";
 import Offers from "./components/Offers";
@@ -18,18 +23,24 @@ import Login from "./components/Login";
 const Grocery = lazy(() => import("./components/Grocery"));
 
 const AppLayout = () => {
-  const [userName, setUserName] = useState();
+  const [user, setUser] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // this will make an api call and check the user is auth or not
-    const data = {
-      name: "Aswindev",
-    };
-    setUserName(data.name);
-  }, []);
+    const userDataString = localStorage.getItem("userData");
+    const user = JSON.parse(userDataString);
+    setUser(user);
+  }, [localStorage.getItem("userData")]);
+
+  useEffect(() => {
+    if (!user?.id) {
+      localStorage.clear();
+      navigate("/");
+    }
+  }, [user]);
 
   return (
-    <UserContext.Provider value={{ loggedUser: userName, setUserName }}>
+    <UserContext.Provider value={{ loggedUser: user, setUser }}>
       <Provider store={appStore}>
         <div className="app">
           <Header />

@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import MenuCard from "./MenuCard";
 import { clearCart } from "../utils/cartSlice";
 import cartimg from "../../public/emptyCart.gif";
 import { CDN_URL } from "../utils/constants";
+import noImg from "../../public/noFood.png";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -23,8 +23,6 @@ const Cart = () => {
     console.log("payment");
   };
 
-  console.log(cartItems);
-
   if (cartItems.length === 0)
     return (
       <div className="flex items-center justify-center">
@@ -36,6 +34,13 @@ const Cart = () => {
         <img className="w-6/12 h-80%" src={cartimg} />
       </div>
     );
+  let total = 0;
+  let price;
+  let itemPrice;
+
+  const hanldeTotal = (itemPrice) => {
+    total += itemPrice;
+  };
 
   return (
     <>
@@ -62,7 +67,7 @@ const Cart = () => {
             key={item.item.card.info.id}
             className="flex justify-between p-3 border bottom-1 mb-1"
           >
-            <div className="w-3/12 text-center">
+            <div className="w-3/12 text-center p-2">
               <img
                 className="rounded-md"
                 src={
@@ -78,7 +83,18 @@ const Cart = () => {
                 {item?.item.card?.info?.name}
               </p>
               <div className="flex justify-between">
-                <span>({item.quantity})</span>
+                <span className="font-semibold text-gray-700">
+                  ₹
+                  {
+                    (price = Math.floor(
+                      (item?.item?.card?.info?.price ||
+                        item?.item?.card?.info?.defaultPrice) / 100
+                    ))
+                  }
+                  <span> x ({item.quantity})</span>
+                  <span> = {(itemPrice = price * item.quantity)}</span>
+                  {hanldeTotal(itemPrice)}
+                </span>
                 <div className="flex justify-end gap-2">
                   <p className="text-black font-bold text-xl px-2 rounded-md">
                     +
@@ -93,7 +109,7 @@ const Cart = () => {
         ))}
         <div className="flex justify-between bg-gray-200 w-full mt-3">
           <span className="mx-4 p-2 font-semibold">Total Price </span>
-          <span className="mx-4 p-2 font-semibold"> ₹{sum}</span>
+          <span className="mx-4 p-2 font-semibold">₹{total}</span>
         </div>
       </div>
     </>

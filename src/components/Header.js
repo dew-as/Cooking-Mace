@@ -8,7 +8,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const [btnName, setBtnName] = useState("Login");
-  const { loggedUser } = useContext(UserContext);
+  const { loggedUser, setUser } = useContext(UserContext);
   const [userData, setUserData] = useState("");
 
   useEffect(() => {
@@ -16,10 +16,12 @@ const Header = () => {
     setBtnName(loggedUser?.id ? "Logout" : "Login");
   }, [loggedUser]);
 
-  console.log(loggedUser?.name, loggedUser?.id);
-
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    setUser("");
   };
 
   return (
@@ -109,7 +111,10 @@ const Header = () => {
               <i className="bx bx-store-alt"></i>
               Grocery
             </a>
-            <a className="cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-400 md:mx-4 md:my-0">
+            <a
+              onClick={handleLogout}
+              className="cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-400 md:mx-4 md:my-0"
+            >
               {btnName}
             </a>
             <span className="cursor-pointer my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-500 hover:text-orange-500 dark:hover:text-orange-400 md:mx-4 md:my-0">

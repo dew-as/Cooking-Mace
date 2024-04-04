@@ -6,7 +6,6 @@ import noImg from "../../public/noFood.png";
 const MenuCard = (props) => {
   const { item, data } = props;
   const dispatch = useDispatch();
-  //console.log(data);
   // now the data is coming from RestaurantMenu and we are passing that from child to child as props this is known as props drilling
 
   const handleCart = (item) => {
@@ -15,7 +14,7 @@ const MenuCard = (props) => {
   let imageId;
   return (
     <div>
-      <div className="flex justify-between p-4">
+      <div className="flex justify-between p-4 items-center">
         <div className="w-9/12">
           <i
             style={

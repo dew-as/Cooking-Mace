@@ -7,7 +7,6 @@ const cartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-      console.log(action.payload);
       const itemIndex = state.items.findIndex(
         (item) => item.item.card.info.id === action.payload.item.card.info.id
       );

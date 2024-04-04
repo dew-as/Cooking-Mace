@@ -17,7 +17,7 @@ const RestaurantCard = (props) => {
   return (
     <div className="card-container">
       <div className="img-container">
-        <img src={CDN_URL + cloudinaryImageId} alt="res-logo" />
+        <img className="" src={CDN_URL + cloudinaryImageId} alt="res-logo" />
         <span className="offer">
           {aggregatedDiscountInfoV3?.header}{" "}
           {aggregatedDiscountInfoV3?.subHeader}
@@ -50,7 +50,7 @@ const RestaurantCard = (props) => {
           </p>
         </div>
         <p className="location">
-          <i className="bx bx-map bx-flashing bx-flip-horizontal"></i>
+          <i className="mt-2 bx bx-map bx-flashing bx-flip-horizontal"></i>
           {areaName}
         </p>
       </div>

@@ -52,7 +52,7 @@ const CartModal = () => {
             key={item.item.card.info.id}
             className="flex justify-between p-3 border bottom-1 mb-1"
           >
-            <div className="w-3/12 text-center">
+            <div className="w-3/12 text-center p-2">
               <img
                 className="rounded-md"
                 src={

@@ -39,10 +39,6 @@ const Body = () => {
     fetchData();
   }, []);
 
-  const { loggedUser } = useContext(UserContext);
-
-  console.log(loggedUser);
-
   const fetchData = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=8.490872999999999&lng=76.9527483&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"

@@ -1,13 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import resImg from "../../public/ResImg.png";
-import { UserContext } from "../utils/globalContext";
 import { message } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState("");
   const navigate = useNavigate();
-  const { setUserName } = useContext(UserContext);
 
   const [messageApi, contextHolder] = message.useMessage();
   const key = "updatable";
@@ -29,11 +27,10 @@ const Login = () => {
 
   const fetchUser = async () => {
     try {
-      console.log(user);
       const data = await fetch(`https://api.github.com/users/${user}`);
       const json = await data.json();
       if (json.login) {
-        setUserName(json);
+        localStorage.setItem("userData", JSON.stringify(json));
         navigate("/home");
       } else {
         await openMessage();
